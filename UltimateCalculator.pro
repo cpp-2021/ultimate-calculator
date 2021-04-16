@@ -24,6 +24,7 @@ HEADERS += \
     include/Expression.h \
     include/Multiplication.h \
     include/Operation.h \
+    include/RootExpressionSingleton.h \
     include/Soustraction.h \
     mainwindow.h
 
