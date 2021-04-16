@@ -2,6 +2,7 @@
 #define ADDITION_H
 
 #include "Operation.h"
+#include "Constante.h"
 
 class Addition: public Operation
 {
@@ -11,6 +12,7 @@ class Addition: public Operation
         void afficher() const;
         void afficherNpi() const;
         float calculer() const;
+        Constante* simplifier() const;
 };
 
 #endif // ADDITION_H
