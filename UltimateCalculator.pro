@@ -15,7 +15,8 @@ SOURCES += \
     src/Constante.cpp \
     src/Division.cpp \
     src/Multiplication.cpp \
-    src/Soustraction.cpp
+    src/Soustraction.cpp \
+    src/variable.cpp
 
 HEADERS += \
     include/Addition.h \
@@ -25,7 +26,8 @@ HEADERS += \
     include/Multiplication.h \
     include/Operation.h \
     include/Soustraction.h \
-    mainwindow.h
+    mainwindow.h \
+    include/variable.h
 
 FORMS += \
     mainwindow.ui

@@ -1,7 +1,8 @@
 #include <iostream>
-
+#include <ctype.h>
 #include "include/Addition.h"
 #include "include/Constante.h"
+
 
 Addition::Addition(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
 
@@ -27,10 +28,11 @@ float Addition::calculer() const
 {
     return getGauche()->calculer() + getDroite()->calculer();
 }
-
-Constante* Addition::simplifier() const{
-    return new Constante(getGauche()->calculer()+getDroite()->calculer());
-}
+/*
+Expression* Addition::simplifier() const{
+    //if((isAlpha(getGauche())==)||getDroite())
+    return getGauche()->calculer()+getDroite()->calculer();
+}*/
 
         //getGauche() -> constante et idem droite
         //addition constante

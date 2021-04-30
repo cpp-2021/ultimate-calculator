@@ -11,6 +11,7 @@ class Division: public Operation
         void afficher() const;
         void afficherNpi() const;
         float calculer() const;
+        Division* simplifier();
 };
 
 #endif // DIVISION_H

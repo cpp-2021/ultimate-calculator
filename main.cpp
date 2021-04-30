@@ -1,10 +1,10 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-
 #include <iostream>
 
 #include "include/Constante.h"
+#include "include/variable.h"
 
 #include "include/Addition.h"
 #include "include/Soustraction.h"
@@ -29,6 +29,13 @@ int main(int argc, char *argv[])
     cout << " = ";
     resultat.afficher();
     cout << endl;
+/*
+    Expression* simpli(add1.simplifier());
+    add1.afficher();
+    cout << " = ";
+    simpli->afficher();
+    cout << endl;
+*/
 
     Soustraction sub1(&c1, &c2);
     Constante resultat2(sub1.calculer());
@@ -49,6 +56,15 @@ int main(int argc, char *argv[])
     div1.afficher();
     cout << " = ";
     resultat4.afficher();
+    cout << endl;
+
+    Variable v1("a");
+    Constante c3(10.0f);
+    Division div2(&v1, &c3);
+    Division* resultat5(div2.simplifier());
+    div2.afficher();
+    cout << " = ";
+    resultat5->afficher();
     cout << endl;
 
     Multiplication expr(&add1, &div1);

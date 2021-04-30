@@ -12,7 +12,7 @@ class Addition: public Operation
         void afficher() const;
         void afficherNpi() const;
         float calculer() const;
-        Constante* simplifier() const;
+        //Expression* simplifier() const;
 };
 
 #endif // ADDITION_H
