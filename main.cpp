@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     cout << endl;
 */
 
-    Soustraction sub1(&c1, &c2);
+    /*Soustraction sub1(&c1, &c2);
     Constante resultat2(sub1.calculer());
     sub1.afficher();
     cout << " = ";
@@ -49,33 +49,35 @@ int main(int argc, char *argv[])
     mul1.afficher();
     cout << " = ";
     resultat3.afficher();
-    cout << endl;
+    cout << endl;*/
 
     Division div1(&c1, &c2);
     Constante resultat4(div1.calculer());
+    //Division *resultat4(div1.simplifier());
     div1.afficher();
     cout << " = ";
     resultat4.afficher();
     cout << endl;
 
-    Variable v1("a");
+    /*Variable v1("a");
     Constante c3(10.0f);
     Division div2(&v1, &c3);
     Division* resultat5(div2.simplifier());
     div2.afficher();
     cout << " = ";
     resultat5->afficher();
-    cout << endl;
+    cout << endl;*/
 
     Multiplication expr(&add1, &div1);
-    Constante res(expr.calculer());
+    //Constante res(expr.calculer());
+    Multiplication *res(expr.simplifier());
     expr.afficher();
     cout << " = ";
-    res.afficher();
+    res->afficher();
     cout << endl;
 
-    expr.afficherNpi();
-    cout << endl;
+    /*expr.afficherNpi();
+    cout << endl;*/
 
     return 0;
 }

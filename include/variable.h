@@ -11,7 +11,8 @@ private:
 public:
     Variable();
 
-    Variable(std::string n = "x");
+    Variable(std::string n = "x") { _nom = n; }
+    Variable(float f = 0.0f) : Constante(f) {}
 
     std::string getValeur() const { return _nom; }
 

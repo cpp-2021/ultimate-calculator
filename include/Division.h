@@ -2,6 +2,7 @@
 #define DIVISION_H
 
 #include "Operation.h"
+#include "variable.h"
 
 class Division: public Operation
 {

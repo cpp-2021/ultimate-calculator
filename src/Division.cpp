@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "include/Division.h"
-#include "include/Constante.h"
 #include "include/variable.h"
 
 Division::Division(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
@@ -27,17 +26,19 @@ float Division::calculer() const
 }
 
 Division* Division::simplifier() {
-    int xxxx = getGauche()->calculer();
-    int yyyy = getDroite()->calculer();
-    if(xxxx == 0 && yyyy== 0){
+    float a = getGauche()->calculer();
+    float b = getDroite()->calculer();
+
+    if(a == 0 && b == 0){
         return new Division(getGauche(), getDroite());
     }
-    if(xxxx==0){
-         return new Division(getGauche(), new Constante(yyyy));
+    if(a == 0){
+         return new Division(getGauche(), new Variable(b));
 
     }
-    if(yyyy==0){
-                return new Division(new Constante(xxxx), getDroite());
+    if(b == 0){
+        return new Division(new Variable(a), getDroite());
     }
-    return new Division(new Constante(xxxx), new Constante(yyyy));
+
+    return new Division(new Variable(a), new Variable(b));
 }

@@ -28,12 +28,11 @@ float Addition::calculer() const
 {
     return getGauche()->calculer() + getDroite()->calculer();
 }
-/*
-Expression* Addition::simplifier() const{
-    //if((isAlpha(getGauche())==)||getDroite())
-    return getGauche()->calculer()+getDroite()->calculer();
-}*/
 
-        //getGauche() -> constante et idem droite
-        //addition constante
-        //cast en cosntante et on return
+/*
+Expression* Addition::simplifier() {
+    int a = getGauche()->calculer();
+    int b = getDroite()->calculer();
+
+    return new Division(new Constante(a), new Constante(b));
+}*/
