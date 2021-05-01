@@ -26,3 +26,16 @@ float Soustraction::calculer() const
 {
     return getGauche()->calculer() - getDroite()->calculer();
 }
+std::string Soustraction::getString() const
+{
+    std::string g = getGauche()->getString();
+    std::string d = getDroite()->getString();
+    return "( " + g + " + " + d + " )";
+}
+
+std::string Soustraction::getStringNpi() const
+{
+    std::string g = getGauche()->getStringNpi();
+    std::string d = getDroite()->getStringNpi();
+    return "( " + g + " " + d + " + " + " )";
+}

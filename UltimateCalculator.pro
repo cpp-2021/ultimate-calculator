@@ -14,6 +14,7 @@ SOURCES += \
     src/Addition.cpp \
     src/Constante.cpp \
     src/Division.cpp \
+    src/LoadSave.cpp \
     src/Multiplication.cpp \
     src/Soustraction.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     include/Constante.h \
     include/Division.h \
     include/Expression.h \
+    include/LoadSave.h \
     include/Multiplication.h \
     include/Operation.h \
     include/RootExpressionSingleton.h \

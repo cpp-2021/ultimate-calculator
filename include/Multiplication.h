@@ -11,6 +11,8 @@ class Multiplication: public Operation
         void afficher() const;
         void afficherNpi() const;
         float calculer() const;
+        virtual std::string getString() const;
+        virtual std::string getStringNpi() const;
 };
 
 #endif // MULTIPLICATION_H

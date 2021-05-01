@@ -23,3 +23,17 @@ float Division::calculer() const
 {
     return getGauche()->calculer() / getDroite()->calculer();
 }
+
+std::string Division::getString() const
+{
+    std::string g = getGauche()->getString();
+    std::string d = getDroite()->getString();
+    return "( " + g + " / " + d + " )";
+}
+
+std::string Division::getStringNpi() const
+{
+    std::string g = getGauche()->getStringNpi();
+    std::string d = getDroite()->getStringNpi();
+    return "( " + g + " " + d + " / " + " )";
+}

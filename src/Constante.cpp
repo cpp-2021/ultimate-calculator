@@ -19,4 +19,13 @@ float Constante::calculer() const
     return getValeur();
 }
 
+std::string Constante::getString() const
+{
+    return std::to_string(getValeur());
+}
+
+std::string Constante::getStringNpi() const
+{
+    return getString();
+}
 Constante::~Constante(){}
