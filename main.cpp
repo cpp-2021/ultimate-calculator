@@ -1,65 +1,75 @@
-#include "mainwindow.h"
+// #include "mainwindow.h"
 
-#include <QApplication>
+// #include <QApplication>
 
 #include <iostream>
-
 #include "include/Constante.h"
-
 #include "include/Addition.h"
 #include "include/Soustraction.h"
 #include "include/Division.h"
 #include "include/Multiplication.h"
+#include "include/RootExpressionSingleton.h"
+#include <stack>
+#include "string.h"
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
-    Constante c1(5.0f);
-    Constante c2(3.0f);
-    cout << "Constantes : ";
-    c1.afficher();
-    cout << ", ";
-    c2.afficher();
-    cout << endl;
+    stack<Expression*> expr;
+    char c[20];
+    Constante *c1;
+    Constante *c2;
 
-    Addition add1(&c1, &c2);
-    Constante resultat(add1.calculer());
-    add1.afficher();
-    cout << " = ";
-    resultat.afficher();
-    cout << endl;
+    cout << "Entrer votre expression, taper p pour terminer." << endl;
 
-    Soustraction sub1(&c1, &c2);
-    Constante resultat2(sub1.calculer());
-    sub1.afficher();
-    cout << " = ";
-    resultat2.afficher();
-    cout << endl;
+    cin >> c;
 
-    Multiplication mul1(&c1, &c2);
-    Constante resultat3(mul1.calculer());
-    mul1.afficher();
-    cout << " = ";
-    resultat3.afficher();
-    cout << endl;
-
-    Division div1(&c1, &c2);
-    Constante resultat4(div1.calculer());
-    div1.afficher();
-    cout << " = ";
-    resultat4.afficher();
-    cout << endl;
-
-    Multiplication expr(&add1, &div1);
-    Constante res(expr.calculer());
-    expr.afficher();
-    cout << " = ";
-    res.afficher();
-    cout << endl;
-
-    expr.afficherNpi();
-    cout << endl;
+    while (strcmp(c, "p")) {
+        if (isdigit(c[0])) {
+            Constante c1(stof(c));
+            expr.push(&c1);
+        } else {
+            switch (c[0]) {
+                case '/':
+                    {
+                        c1 = dynamic_cast<Constante *>(expr.top());
+                        c2 = dynamic_cast<Constante *>(expr.top());
+                        Division d(c1, c2);
+                        expr.push(&d);
+                        break;
+                    }
+                case '+':
+                    {
+                        c1 = dynamic_cast<Constante *>(expr.top());
+                        c2 = dynamic_cast<Constante *>(expr.top());
+                        Addition a(c1, c2);
+                        expr.push(&a);
+                        break;
+                    }
+                case '-':
+                    {
+                        c1 = dynamic_cast<Constante *>(expr.top());
+                        c2 = dynamic_cast<Constante *>(expr.top());
+                        Soustraction c(c1, c2);
+                        expr.push(&c);
+                        break;
+                    }
+                case '*':
+                   {
+                        c1 = dynamic_cast<Constante *>(expr.top());
+                        c2 = dynamic_cast<Constante *>(expr.top());
+                        Multiplication m(c1, c2);
+                        expr.push(&m);
+                        break;
+                   }
+                default:
+                    cout << "Invalid operation.";
+                    exit -1;
+            }
+        }
+        cin >> c;
+    }
 
     return 0;
 }
