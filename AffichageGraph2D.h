@@ -8,7 +8,7 @@ class AffichageGraph2D
 {
 public:
     AffichageGraph2D(QWidget *parent);
-    QLineSeries *creerCurve(/*Variable variable*/int a, int b);
+    QLineSeries *createCurve(/*Variable variable*/int a, int b);
     QChart *createGraph(QLineSeries *courbe, char *title, int xMin, int xMax, int yMin, int yMax);
 };
 

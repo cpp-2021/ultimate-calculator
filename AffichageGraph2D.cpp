@@ -6,7 +6,7 @@
 
 AffichageGraph2D::AffichageGraph2D(QWidget *parent) {}
 
-QLineSeries* AffichageGraph2D::creerCurve(/*Variable variable*/int a, int b){
+QLineSeries* AffichageGraph2D::createCurve(/*Variable variable*/int a, int b){
 
     //1) Create curve
     QLineSeries *courbe = new QLineSeries();

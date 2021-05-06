@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //2) Display graphics
     AffichageGraph2D *affichage = new AffichageGraph2D(parent);
-    courbe = affichage->createCourbe(-10, 2);
-    graphe = affichage->createGraph(courbe, "Guillaume le Tuple", -10, 0, 0, 10);
+    courbe = affichage->createCurve(-10, 2);
+    graphe = affichage->createGraph(courbe, "TITLE", -10, 0, 0, 10);
 
     //3) Set graphique content (Chart View)
     graphique = new QChartView(graphe);
