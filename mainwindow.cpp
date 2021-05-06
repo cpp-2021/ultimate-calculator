@@ -5,7 +5,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    //1) Init UI
     ui->setupUi(this);
+
     // Les données
     courbe = new QLineSeries();
     int x = 5;
