@@ -17,5 +17,14 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void NumPressed(QString valeur);
+    void MathButtonPressed(char operateur);
+    void EqualButton();
+    void ClearButton();
+    void AddVirgule();
 };
+
+
 #endif // MAINWINDOW_H

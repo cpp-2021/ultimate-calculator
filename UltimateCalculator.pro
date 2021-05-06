@@ -29,7 +29,6 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
-    ../../../Downloads/Calculatrice (1)/Calculatrice/Calculatrice/mainwindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "iostream"
-
 #include "Constante.h"
 #include "Addition.h"
 #include "Division.h"
@@ -11,37 +10,39 @@
 #include "Operation.h"
 
 using namespace std;
-float calcVal = 0;
-bool divTrigger = false;
-bool mulTrigger = false;
-bool addTrigger = false;
-bool subTrigger = false;
+
+bool waitMember = false;
+Expression *racine = NULL;
+
+QString chaineRentrée = " ";
+QString tabExpression[3];
+Expression *expr;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->Display->setText(QString::number(calcVal));
+    ui->Display->setText(chaineRentrée);
 
     // Connect signals and slots for number buttons
     QPushButton *numButton[10];
     for(int i=0; i<10; ++i){
         QString button = "Button" + QString::number(i);
         numButton[i] = MainWindow::findChild<QPushButton *>(button);
-        connect(numButton[i], SIGNAL(released()), this, SLOT(NumPressed()));
+        connect(numButton[i], SIGNAL(released()), this, SLOT(NumPressed(QString::number(i))));
     }
 
 
     // Connect signals and slots for math buttons
     connect(ui->ButtonAdd, SIGNAL(released()), this,
-            SLOT(MathButtonPressed()));
+            SLOT(MathButtonPressed('+')));
     connect(ui->ButtonMinus, SIGNAL(released()), this,
-            SLOT(MathButtonPressed()));
+            SLOT(MathButtonPressed('-')));
     connect(ui->ButtonMult, SIGNAL(released()), this,
-            SLOT(MathButtonPressed()));
+            SLOT(MathButtonPressed('*')));
     connect(ui->ButtonEquals, SIGNAL(released()), this,
-            SLOT(EqualButton()));
+            SLOT(EqualButton('=')));
 
     // Connect clear button
     connect(ui->ButtonAC, SIGNAL(released()), this,
@@ -61,55 +62,38 @@ MainWindow::~MainWindow()
 }
 
 // Function that display the number pressed by the user in the user interface.
-void MainWindow::NumPressed(){
-    QPushButton *button = (QPushButton *)sender();
-    QString butval = button->text();
-    QString displayVal = ui->Display->text();
-    if(displayVal.toFloat() == 0){
-        ui->Display->setText(displayVal + butval);
-    } else {
-        QString newVal = displayVal + butval;
-        float dblNewVal = newVal.toFloat();
-        ui->Display->setText(QString::number(dblNewVal, 'g', 16));
-    }
+void MainWindow::NumPressed(QString valeur){
+    chaineRentrée += valeur;
 }
 
-void MainWindow::MathButtonPressed(){
+void MainWindow::MathButtonPressed(char operateur){
 
-    // Cancel out previous math button clicks
-    divTrigger = false;
-    mulTrigger = false;
-    addTrigger = false;
-    subTrigger = false;
-
-    // Store current value in Display
-    QString displayVal = ui->Display->text();
-    Expression calcVal = Constante(displayVal.toFloat());
-
-    // Sender returns a pointer to the button pressed
-    QPushButton *button = (QPushButton *)sender();
-
-    // Get math symbol on the button
-    QString butVal = button->text();
-
-    if(QString::compare(butVal, "/", Qt::CaseInsensitive) == 0){
-        divTrigger = true;
-    } else if(QString::compare(butVal, "*", Qt::CaseInsensitive) == 0){
-        mulTrigger = true;
-    } else if(QString::compare(butVal, "+", Qt::CaseInsensitive) == 0){
-        addTrigger = true;
-    } else {
-        subTrigger = true;
-    }
-
-    // Clear display
-    ui->Display->setText("");
-
+    Constante *cons = new Constante(chaineRentrée.toFloat());
+    tabExpression[0] = chaineRentrée;
+    tabExpression[1] = operateur;
+    chaineRentrée = "";
 }
 
-void MainWindow::EqualButton(){
+void MainWindow::EqualButton()
+{
+    tabExpression[2] = chaineRentrée;
+    chaineRentrée = "";
+    Constante *membreGauche = new Constante(tabExpression[0].toFloat());
+    Constante *membreDroite = new Constante(tabExpression[2].toFloat());
 
-    // Holds new calculation
+    QByteArray ba = tabExpression[1].toLocal8Bit();
+    const char* op = ba.data();
+    switch (op[0]){
+        case '+':
+            expr = new Addition(membreGauche, membreDroite);
+            break;
+    }
+    expr->calculer();
+    std::cout << expr->calculer() << std::endl;
+
+
+    /*
+     * // Holds new calculation
     Constante solution = Constante(0);
 
     // Get value in display
@@ -136,7 +120,7 @@ void MainWindow::EqualButton(){
     // Put solution in display
     ui->Display->setText(QString::number(solution.calculer()));
 
-    solution.afficherNpi();
+    solution.afficherNpi(); */
 
 }
 

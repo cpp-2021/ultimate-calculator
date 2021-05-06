@@ -7,6 +7,7 @@ class Multiplication: public Operation
 {
     public:
         Multiplication(Expression *gauche, Expression *droite);
+        Multiplication();
 
         void afficher() const;
         void afficherNpi() const;
