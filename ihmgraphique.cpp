@@ -1,19 +1,10 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "ihmgraphique.h"
 
-MainWindow::MainWindow(QWidget *parent)
+IhmGraphique::IhmGraphique(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
     // Les données
     courbe = new QLineSeries();
-    int x = 5;
-    for(x=-10; x<10; x++)
-    {
-            int y = x*3+4;
-            *courbe << QPointF(x, y);
-    }
 
     // Technique n°2
     // exemple avec un QValueAxis
@@ -36,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Les axes
     // Par défaut
     graphe->createDefaultAxes();
-    graphe->axes(Qt::Horizontal).first()->setRange(-10, 10);
+    graphe->axes(Qt::Horizontal).first()->setRange(-10, -10);
     graphe->axes(Qt::Vertical).first()->setRange(0, 10);
 
     // Le widget
@@ -47,8 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     resize(640, 480);
 }
 
-MainWindow::~MainWindow()
+IhmGraphique::~IhmGraphique()
 {
-    delete ui;
-}
 
+}

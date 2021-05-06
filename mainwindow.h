@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtWidgets>
+#include <QtCharts>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +19,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QChartView *graphique; // un widget pour afficher un graphe
+    QChart *graphe; // la représentation d'un graphe
+    QLineSeries *courbe; // les données
 };
 #endif // MAINWINDOW_H

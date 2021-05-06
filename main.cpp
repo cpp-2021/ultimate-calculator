@@ -15,7 +15,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    Constante c1(5.0f);
+    /*Constante c1(5.0f);
     Constante c2(3.0f);
     cout << "Constantes : ";
     c1.afficher();
@@ -59,7 +59,11 @@ int main(int argc, char *argv[])
     cout << endl;
 
     expr.afficherNpi();
-    cout << endl;
+    cout << endl;*/
 
-    return 0;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 }
