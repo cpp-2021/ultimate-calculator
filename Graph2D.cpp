@@ -1,12 +1,19 @@
-#include "AffichageGraph2D.h"
+#include "Graph2D.h"
 #include "ui_mainwindow.h"
 #include <QtCharts>
+#include <QPushButton>
+#include "mainwindow.h"
 
 
 
-AffichageGraph2D::AffichageGraph2D(QWidget *parent) {}
+Graph2D::Graph2D(/*Variable variable*/ int a, int b) {
+    this->a = a;
+    this->b = b;
+}
 
-QLineSeries* AffichageGraph2D::createCurve(/*Variable variable*/int a, int b){
+
+
+QLineSeries* Graph2D::createCurve(){
 
     //1) Create curve
     QLineSeries *courbe = new QLineSeries();
@@ -27,7 +34,8 @@ QLineSeries* AffichageGraph2D::createCurve(/*Variable variable*/int a, int b){
 }
 
 
-QChart* AffichageGraph2D::createGraph(QLineSeries *courbe, char *title, int xMin, int xMax, int yMin, int yMax){
+
+QChart* Graph2D::createGraph(QLineSeries *courbe, char *title, MainWindow *parent){
 
     //1) Init graph & Add curve
     QChart *graph = new QChart();

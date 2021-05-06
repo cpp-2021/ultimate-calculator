@@ -17,6 +17,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+    void min();
+    QPushButton* btn_xMin;
+    QPushButton* btn_xMax;
+    QPushButton* btn_yMin;
+    QPushButton* btn_yMax;
+    QGraphicsView* graph;
+
 private:
     Ui::MainWindow *ui;
     QChartView *graphique; // un widget pour afficher un graphe
