@@ -39,7 +39,9 @@ Pour cloner le dépôt, dans un Git Bash, placez vous dans le dossier ou vous st
 
 ``git clone https://github.com/cpp-2021/ultimate-calculator``  
 
-Reste à vous placer sur la bonne branche et a ouvrir Qt Creator pour lancer le fichier projet.  
+Reste à vous placer sur la bonne branche et a ouvrir Qt Creator pour lancer le fichier projet:
+
+``git checkout features/ma_branche``  
   
 ## Comment bien travailler sur le projet ? <a name="how-to"></a>
 
@@ -66,16 +68,18 @@ Reste à vous placer sur la bonne branche et a ouvrir Qt Creator pour lancer le 
 
 - [x] Initialisation du projet (Fonctions de base)  
 - [x] Singleton  
-- [ ] Interface Homme Machine
-- [ ] Variables  
-- [ ] Input utilisateur via IHM  
-- [ ] Simplifications d'expressions  
-- [ ] Sauvegarde et chargement  
-- [ ] Graphique 2D  
-- [ ] Graphique 3D  
-- [ ] Extensions d'opérations  
-- [ ] Expressions rentrées par l'utilisateur  
-- [ ] Documentation  
+- [~] Interface Homme Machine
+- [~] Variables  
+- [~] Input utilisateur via IHM  
+- [~] Simplifications d'expressions  
+- [~] Sauvegarde et chargement  
+- [~] Graphique 2D  
+- [~] Graphique 3D  
+- [~] Extensions d'opérations  
+- [~] Expressions rentrées par l'utilisateur  
+- [ ] Documentation 
+
+Légende :  les points anotés par " ~ " ne sont pas encore intégrés et/ou sont en cours d'édition par les groupes respectifs.
 
 ## Versions <a name="versions"></a>
 **Dernière version stable (stable) :** 0.0.0-d  
