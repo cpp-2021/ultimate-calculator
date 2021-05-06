@@ -11,6 +11,8 @@
 #include "include/Division.h"
 #include "include/Multiplication.h"
 
+#include "include/RootExpressionSingleton.h"
+
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -59,6 +61,15 @@ int main(int argc, char *argv[])
     cout << endl;
 
     expr.afficherNpi();
+    cout << endl;
+
+    cout << "Exemple singleton : "<< endl;
+
+    //Définition de l'expression statique
+    RootExpressionSingleton::instance().set(&expr);
+
+    //Accès à l'expression
+    RootExpressionSingleton::instance().get()->afficher();
     cout << endl;
 
     return 0;
