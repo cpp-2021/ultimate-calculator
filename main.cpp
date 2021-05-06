@@ -11,11 +11,13 @@
 #include "include/Division.h"
 #include "include/Multiplication.h"
 
+#include "include/RootExpressionSingleton.h"
+
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    /*Constante c1(5.0f);
+    Constante c1(5.0f);
     Constante c2(3.0f);
     cout << "Constantes : ";
     c1.afficher();
@@ -59,11 +61,20 @@ int main(int argc, char *argv[])
     cout << endl;
 
     expr.afficherNpi();
-    cout << endl;*/
+    cout << endl;
 
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
-    return a.exec();
+    cout << "Exemple singleton : "<< endl;
+
+    //Définition de l'expression statique
+    RootExpressionSingleton::instance().set(&expr);
+
+    //Accès à l'expression
+    RootExpressionSingleton::instance().get()->afficher();
+    cout << endl;
+
+    return 0;
 }
