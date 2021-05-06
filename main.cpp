@@ -76,5 +76,5 @@ int main(int argc, char *argv[])
     RootExpressionSingleton::instance().get()->afficher();
     cout << endl;
 
-    return 0;
+    return a.exec();
 }
