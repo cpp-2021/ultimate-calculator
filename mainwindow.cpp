@@ -13,10 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     //1) Init UI
     ui->setupUi(this);
     this->title = "TITLE";
-    this->xMin = -100;
-    this->xMax = 100;
-    this->yMin = -100;
-    this->yMax = 100;
+    this->xMin = -10;
+    this->xMax = 10;
+    this->yMin = -10;
+    this->yMax = 10;
     this->a = 5;
     this->b = 3;
 
@@ -101,9 +101,9 @@ QLineSeries* MainWindow::createCurve(){
 
     //1) Create curve
     QLineSeries *courbe = new QLineSeries();
-    for(int x=-10; x<10; x++)
+    for(float x=xMin; x<xMax; x+=0.1f)
     {
-        int y = a*x + b;
+        float y = x*x;
         *courbe << QPointF(x, y);
     }
 

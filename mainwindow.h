@@ -34,10 +34,10 @@ class MainWindow : public QMainWindow
         Ui::MainWindow *ui;
         int a; //TMP
         int b; //TMP
-        int xMin;
-        int xMax;
-        int yMin;
-        int yMax;
+        float xMin;
+        float xMax;
+        float yMin;
+        float yMax;
         char *title;
 };
 #endif // MAINWINDOW_H
