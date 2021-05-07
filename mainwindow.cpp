@@ -1,7 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Graph2D.h"
+#include <iostream>
 
+#define OFFSET 5;
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,40 +12,129 @@ MainWindow::MainWindow(QWidget *parent)
 {
     //1) Init UI
     ui->setupUi(this);
-    btn_xMin = findChild<QPushButton*>("btn_xMin");
-    btn_xMax = findChild<QPushButton*>("btn_xMax");
-    btn_yMin = findChild<QPushButton*>("btn_yMin");
-    btn_yMax = findChild<QPushButton*>("btn_yMax");
-    graph = findChild<QGraphicsView*>("graphics");
-    connect(btn_xMin, &QPushButton::released, this, &MainWindow::min);
+    this->title = "TITLE";
+    this->xMin = -100;
+    this->xMax = 100;
+    this->yMin = -100;
+    this->yMax = 100;
+    this->a = 5;
+    this->b = 3;
 
-    QWidget *widget = new QWidget();
-    QGridLayout *layout = new QGridLayout(widget);
-
-    layout->addWidget(btn_xMin, 0, 0, 1, 1);
-    layout->addWidget(btn_xMax, 0, 1, 1, 1);
-    layout->addWidget(btn_yMin, 0, 2, 1, 1);
-    layout->addWidget(btn_yMax, 0, 3, 1, 1);
-
-    //2) Display graphics
-   Graph2D *affichage = new Graph2D(-10, 2);
-   QLineSeries *courbe = affichage->createCurve();
-   QChart *graphe = affichage->createGraph(courbe, "TITLE", this);
-
-   //3) Set graphique content (Chart View)
-   QChartView *graphique = new QChartView(graphe);
-   graphique->setRenderHint(QPainter::Antialiasing);
-   setCentralWidget(graphique);
-   resize(640, 480);
-   layout->addWidget(graphique, 1, 0, 1, 1);
-
-
-    setCentralWidget(widget);
-    widget->setLayout(layout);
+    //2) Init btns & graphics view
+    initBtns();
+    initGraphics();
 }
-void MainWindow::min(){
-    btn_xMin->setText("lol");
+
+
+
+// BTNS //
+void MainWindow::initBtns(){
+
+    // XMIN
+    QPushButton *btn_xmin_inf = findChild<QPushButton*>("xmin_inf");
+    QPushButton *btn_xmin_sup = findChild<QPushButton*>("xmin_sup");
+    connect(btn_xmin_inf, &QPushButton::released, this, &MainWindow::xminInf);
+    connect(btn_xmin_sup, &QPushButton::released, this, &MainWindow::xminSup);
+
+    // XMAX
+    QPushButton *btn_xmax_inf = findChild<QPushButton*>("xmax_inf");
+    QPushButton *btn_xmax_sup = findChild<QPushButton*>("xmax_sup");
+    connect(btn_xmax_inf, &QPushButton::released, this, &MainWindow::xmaxInf);
+    connect(btn_xmax_sup, &QPushButton::released, this, &MainWindow::xmaxSup);
+
+    // YMIN
+    QPushButton *btn_ymin_inf = findChild<QPushButton*>("ymin_inf");
+    QPushButton *btn_ymin_sup = findChild<QPushButton*>("ymin_sup");
+    connect(btn_ymin_inf, &QPushButton::released, this, &MainWindow::yminInf);
+    connect(btn_ymin_sup, &QPushButton::released, this, &MainWindow::yminSup);
+
+    // YMAX
+    QPushButton *btn_ymax_inf = findChild<QPushButton*>("ymax_inf");
+    QPushButton *btn_ymax_sup = findChild<QPushButton*>("ymax_sup");
+    connect(btn_ymax_inf, &QPushButton::released, this, &MainWindow::ymaxInf);
+    connect(btn_ymax_sup, &QPushButton::released, this, &MainWindow::ymaxSup);
 }
+void MainWindow::xminInf(){
+    this->xMin -= OFFSET;
+    initGraphics();
+}
+void MainWindow::xminSup(){
+    this->xMin += OFFSET;
+    initGraphics();
+}
+void MainWindow::yminInf(){
+    this->yMin -= OFFSET;
+    initGraphics();
+}
+void MainWindow::yminSup(){
+    this->yMin += OFFSET;
+    initGraphics();
+}
+void MainWindow::xmaxInf(){
+    this->xMax -= OFFSET;
+    initGraphics();
+}
+void MainWindow::xmaxSup(){
+    this->xMax += OFFSET;
+    initGraphics();
+}
+void MainWindow::ymaxInf(){
+    this->yMax -= OFFSET;
+    initGraphics();
+}
+void MainWindow::ymaxSup(){
+    this->yMax += OFFSET;
+    initGraphics();
+}
+
+
+
+// GRAPHICS //
+void MainWindow::initGraphics(){
+    QChartView *graphique = findChild<QChartView*>("graphics");
+
+    QLineSeries *courbe = createCurve();
+    QChart *graphe = createGraph(courbe);
+    graphique->setChart(graphe);
+}
+QLineSeries* MainWindow::createCurve(){
+
+    //1) Create curve
+    QLineSeries *courbe = new QLineSeries();
+    for(int x=-10; x<10; x++)
+    {
+        int y = a*x + b;
+        *courbe << QPointF(x, y);
+    }
+
+    //2) Init legends
+    courbe->setName(QString::fromUtf8(/*Expression name*/"EXPRESSION_NAME"));
+    QPen pen(0x059605);
+    pen.setWidth(3);
+    pen.setStyle(Qt::DashLine);
+    courbe->setPen(pen);
+
+    return courbe;
+}
+QChart* MainWindow::createGraph(QLineSeries *courbe){
+
+    //1) Init graph & Add curve
+    QChart *graph = new QChart();
+    graph->addSeries(courbe);
+
+    //2) Set settings
+    graph->setTitle(title);
+    //graphe->legend()->hide();
+    graph->legend()->setAlignment(Qt::AlignBottom);
+    graph->createDefaultAxes();
+    graph->axes(Qt::Horizontal).first()->setRange(xMin, xMax);
+    graph->axes(Qt::Vertical).first()->setRange(yMin, yMax);
+
+    return graph;
+}
+
+
+
 MainWindow::~MainWindow()
 {
     delete ui;

@@ -13,7 +13,6 @@ TARGET = UltimateCalculator.pro
 TEMPLATE = app
 
 SOURCES += \
-    Graph2D.cpp \
     main.cpp \
     mainwindow.cpp \
     src/Addition.cpp \
@@ -23,7 +22,6 @@ SOURCES += \
     src/Soustraction.cpp
 
 HEADERS += \
-    Graph2D.h \
     include/Addition.h \
     include/Constante.h \
     include/Division.h \

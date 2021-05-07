@@ -13,22 +13,31 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    public:
+        MainWindow(QWidget *parent = nullptr);
+        void handleButton(int axis);
+        void initBtns();
+        void initGraphics();
+        QLineSeries *createCurve();
+        QChart *createGraph(QLineSeries *courbe);
+        void xminInf();
+        void xminSup();
+        void yminInf();
+        void yminSup();
+        void xmaxInf();
+        void xmaxSup();
+        void ymaxInf();
+        void ymaxSup();
+        ~MainWindow();
 
-
-    void min();
-    QPushButton* btn_xMin;
-    QPushButton* btn_xMax;
-    QPushButton* btn_yMin;
-    QPushButton* btn_yMax;
-    QGraphicsView* graph;
-
-private:
-    Ui::MainWindow *ui;
-    QChartView *graphique; // un widget pour afficher un graphe
-    QChart *graphe; // la représentation d'un graphe
-    QLineSeries *courbe; // les données
+    private:
+        Ui::MainWindow *ui;
+        int a; //TMP
+        int b; //TMP
+        int xMin;
+        int xMax;
+        int yMin;
+        int yMax;
+        char *title;
 };
 #endif // MAINWINDOW_H

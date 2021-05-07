@@ -28,37 +28,109 @@
       <number>6</number>
      </property>
      <item>
-      <widget class="QGraphicsView" name="gaphics"/>
+      <widget class="QChartView" name="graphics"/>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="btn_xMax">
-         <property name="text">
-          <string>xMax</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="xmin">
+         <item>
+          <widget class="QPushButton" name="xmin_inf">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="xmin_text">
+           <property name="text">
+            <string>xMin</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="xmin_sup">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_yMin">
-         <property name="text">
-          <string>yMin</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="xmax">
+         <item>
+          <widget class="QPushButton" name="xmax_inf">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="xmax_text">
+           <property name="text">
+            <string>xMax</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="xmax_sup">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_yMax">
-         <property name="text">
-          <string>yMax</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="ymin">
+         <item>
+          <widget class="QPushButton" name="ymin_inf">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="ymin_sup">
+           <property name="text">
+            <string>yMin</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="xmin_sup_2">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_xMin">
-         <property name="text">
-          <string>xMin</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="ymax">
+         <item>
+          <widget class="QPushButton" name="ymax_inf">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="ymax_text">
+           <property name="text">
+            <string>yMax</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="ymax_sup">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
@@ -77,6 +149,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>QtCharts</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
