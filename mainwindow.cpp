@@ -91,7 +91,6 @@ void MainWindow::MathButtonPressed(){
 void MainWindow::EqualButton()
 {
     tabExpression[2] = chaineRentree;
-    chaineRentree = "";
     Expression *expr;
     Constante *membreGauche = new Constante(tabExpression[0].toFloat());
     Constante *membreDroite = new Constante(tabExpression[2].toFloat());
@@ -120,7 +119,8 @@ void MainWindow::EqualButton()
     float res =  RootExpressionSingleton::instance().get()->calculer();
     ui->Display->setText(QString::number(res));
     std::cout << res << std::endl;
-
+    QString finalRes = QString::number(res);
+    chaineRentree = finalRes;
 
 }
 
@@ -128,11 +128,14 @@ void MainWindow::EqualButton()
   * Empty everything (back to square 1 lol)
   */
 void MainWindow::ClearButton(){
-    //tabExpression = ["", "", ""];
+    tabExpression[0] = "";
+    tabExpression[1] = "";
+    tabExpression[2] = "";
     chaineRentree = "";
     ui->Display->setText(chaineRentree);
 }
 
 void MainWindow::AddVirgule(){
+    chaineRentree += '.';
     ui->Display->setText(ui->Display->text() + ".");
 }
