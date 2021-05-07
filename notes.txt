@@ -1,0 +1,27 @@
+J'appuye sur 5 => Crée une constnte de val 5
+On veut faire un add => Crée une const de val 5 => On appuye sur + => On crée une opération de type addtiion => On appuye sur 6 => Crée un const de val 6 
+	=> On affecte à l'opération de type addition le membre de gauche à l'adresse de la constante 5 et le membre droite a l'adresse de la constante 6  
+
+
+On est dans une fonction qui prend en param le flottant sur lequel on a appuyé 
+Val = le flottant
+LA fonction renvoi une constante de valeur 5
+
+
+Fonction qui renvoie une addition et qui prend en param deux expression
+=> Renvoi l'objet addition 
+
+Quand on appuye sur " = "
+Fonction qui fait l'appel a calculer de la classe Addition
+
+
+
+
+
+add est notre addition (5+6)
+J'appuye sur / => On crée un opération de type division => puis sur 2 => On crée une constante de valeur 2 
+On affecte à l'opération de type division le membre de gauche à l'adresse de add et le membre droite à l'adresse de la constante 2
+
+div est notre division ((5+6)/2)
+
+

@@ -30,20 +30,21 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *numButton[10];
     for(int i=0; i<10; ++i){
         QString button = "Button" + QString::number(i);
+        QString test = "1";
         numButton[i] = MainWindow::findChild<QPushButton *>(button);
-        connect(numButton[i], SIGNAL(released()), this, SLOT(NumPressed(QString::number(i))));
+        connect(numButton[i], SIGNAL(released()), this, SLOT(NumPressed()));
     }
 
 
     // Connect signals and slots for math buttons
     connect(ui->ButtonAdd, SIGNAL(released()), this,
-            SLOT(MathButtonPressed('+')));
+            SLOT(MathButtonPressed()));
     connect(ui->ButtonMinus, SIGNAL(released()), this,
-            SLOT(MathButtonPressed('-')));
+            SLOT(MathButtonPressed()));
     connect(ui->ButtonMult, SIGNAL(released()), this,
-            SLOT(MathButtonPressed('*')));
+            SLOT(MathButtonPressed()));
     connect(ui->ButtonEquals, SIGNAL(released()), this,
-            SLOT(EqualButton('=')));
+            SLOT(EqualButton()));
 
     // Connect clear button
     connect(ui->ButtonAC, SIGNAL(released()), this,
@@ -63,18 +64,22 @@ MainWindow::~MainWindow()
 }
 
 // Function that display the number pressed by the user in the user interface.
-void MainWindow::NumPressed(QString valeur){
-    chaineRentree += valeur;
+void MainWindow::NumPressed(){
+    QPushButton *button = (QPushButton *)sender();
+    QString butval = button->text();
+    chaineRentree += butval;
+    ui->Display->setText(chaineRentree);
 }
 
 /**
   * Fill the temp array with left member and operator
   **/
-void MainWindow::MathButtonPressed(char operateur){
-
+void MainWindow::MathButtonPressed(){
+    QPushButton *button = (QPushButton *)sender();
+    QString butval = button->text();
     Constante *cons = new Constante(chaineRentree.toFloat());
     tabExpression[0] = chaineRentree;
-    tabExpression[1] = operateur;
+    tabExpression[1] = butval;
     chaineRentree = "";
 }
 
@@ -87,6 +92,7 @@ void MainWindow::EqualButton()
 {
     tabExpression[2] = chaineRentree;
     chaineRentree = "";
+    Expression *expr;
     Constante *membreGauche = new Constante(tabExpression[0].toFloat());
     Constante *membreDroite = new Constante(tabExpression[2].toFloat());
 
@@ -94,25 +100,26 @@ void MainWindow::EqualButton()
     const char* op = ba.data();
     switch (op[0]){
       case '+':
-        Expression *expr = new Addition(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(&expr);
+        expr = new Addition(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(expr);
         break;
       case '-':
-        Expression *expr = new Soustraction(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(&expr);
+        expr = new Soustraction(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(expr);
         break;
       case '*':
-        Expression *expr = new Multiplication(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(&expr);
+        expr = new Multiplication(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(expr);
         break;
       case '/':
-        Expression *expr = new Division(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(&expr);
+        expr = new Division(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(expr);
         break;
     }
 
-    float res =  RootExpressionSingleton::instance().get()->calculer()
-    ui->Display->setText(QString::number(res))
+    float res =  RootExpressionSingleton::instance().get()->calculer();
+    ui->Display->setText(QString::number(res));
+    std::cout << res << std::endl;
 
 
 }
@@ -121,9 +128,9 @@ void MainWindow::EqualButton()
   * Empty everything (back to square 1 lol)
   */
 void MainWindow::ClearButton(){
-    tabExpression = ["", "", ""];
+    //tabExpression = ["", "", ""];
     chaineRentree = "";
-    ui->Display->setText(chaineRentree)
+    ui->Display->setText(chaineRentree);
 }
 
 void MainWindow::AddVirgule(){
