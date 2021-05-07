@@ -1,29 +1,30 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "iostream"
-#include "Constante.h"
-#include "Addition.h"
-#include "Division.h"
-#include "Multiplication.h"
-#include "Soustraction.h"
-#include "Expression.h"
-#include "Operation.h"
+
+#include "include/Constante.h"
+#include "include/Addition.h"
+#include "include/Division.h"
+#include "include/Multiplication.h"
+#include "include/Soustraction.h"
+#include "include/Expression.h"
+#include "include/Operation.h"
+
+#include "include/RootExpressionSingleton.h"
 
 using namespace std;
 
 bool waitMember = false;
-Expression *racine = NULL;
 
-QString chaineRentrée = " ";
+QString chaineRentree = "";
 QString tabExpression[3];
-Expression *expr;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->Display->setText(chaineRentrée);
+    ui->Display->setText(chaineRentree);
 
     // Connect signals and slots for number buttons
     QPushButton *numButton[10];
@@ -63,73 +64,68 @@ MainWindow::~MainWindow()
 
 // Function that display the number pressed by the user in the user interface.
 void MainWindow::NumPressed(QString valeur){
-    chaineRentrée += valeur;
+    chaineRentree += valeur;
 }
 
+/**
+  * Fill the temp array with left member and operator
+  **/
 void MainWindow::MathButtonPressed(char operateur){
 
-    Constante *cons = new Constante(chaineRentrée.toFloat());
-    tabExpression[0] = chaineRentrée;
+    Constante *cons = new Constante(chaineRentree.toFloat());
+    tabExpression[0] = chaineRentree;
     tabExpression[1] = operateur;
-    chaineRentrée = "";
+    chaineRentree = "";
 }
 
+/**
+  * Fill the temp array with right member
+  * and instantiate expression (through singleton)
+  * according to the right operator
+  **/
 void MainWindow::EqualButton()
 {
-    tabExpression[2] = chaineRentrée;
-    chaineRentrée = "";
+    tabExpression[2] = chaineRentree;
+    chaineRentree = "";
     Constante *membreGauche = new Constante(tabExpression[0].toFloat());
     Constante *membreDroite = new Constante(tabExpression[2].toFloat());
 
     QByteArray ba = tabExpression[1].toLocal8Bit();
     const char* op = ba.data();
     switch (op[0]){
-        case '+':
-            expr = new Addition(membreGauche, membreDroite);
-            break;
-    }
-    expr->calculer();
-    std::cout << expr->calculer() << std::endl;
-
-
-    /*
-     * // Holds new calculation
-    Constante solution = Constante(0);
-
-    // Get value in display
-    QString displayVal = ui->Display->text();
-    Expression dblDisplayVal = Constante(displayVal.toFloat());
-
-    // Make sure a math button was pressed
-    if(addTrigger || subTrigger || mulTrigger || divTrigger ){
-        if(addTrigger){
-            Addition add = Addition(&calcVal, &dblDisplayVal);
-            solution = add.calculer()
-        } else if(subTrigger){
-            Soustraction sous = Soustraction(&calcVal, &dblDisplayVal)
-            solution = sous.calculer();
-        } else if(mulTrigger){
-            Multiplication mul = Multiplication(&calcVal, &dblDisplayVal);
-            solution = mul.calculer();
-        } else {
-            Division div = Division(&calcVal, &dblDisplayVal);
-            solution = div.calculer();
-        }
+      case '+':
+        Expression *expr = new Addition(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(&expr);
+        break;
+      case '-':
+        Expression *expr = new Soustraction(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(&expr);
+        break;
+      case '*':
+        Expression *expr = new Multiplication(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(&expr);
+        break;
+      case '/':
+        Expression *expr = new Division(membreGauche, membreDroite);
+        RootExpressionSingleton::instance().set(&expr);
+        break;
     }
 
-    // Put solution in display
-    ui->Display->setText(QString::number(solution.calculer()));
+    float res =  RootExpressionSingleton::instance().get()->calculer()
+    ui->Display->setText(QString::number(res))
 
-    solution.afficherNpi(); */
 
 }
 
+/**
+  * Empty everything (back to square 1 lol)
+  */
 void MainWindow::ClearButton(){
-    ui->Display->setText("");
+    tabExpression = ["", "", ""];
+    chaineRentree = "";
+    ui->Display->setText(chaineRentree)
 }
 
 void MainWindow::AddVirgule(){
     ui->Display->setText(ui->Display->text() + ".");
 }
-
-
