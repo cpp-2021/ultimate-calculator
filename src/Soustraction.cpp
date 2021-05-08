@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "include/Soustraction.h"
+#include "include/variable.h"
 
 Soustraction::Soustraction(Expression *gauche, Expression *droite) : Operation(gauche, droite) {}
 
@@ -25,4 +26,11 @@ void Soustraction::afficherNpi() const
 float Soustraction::calculer() const
 {
     return getGauche()->calculer() - getDroite()->calculer();
+}
+
+Soustraction* Soustraction::simplifier() {
+    float a = getGauche()->calculer();
+    float b = getDroite()->calculer();
+
+    return new Soustraction(new Variable(a), new Variable(b));
 }

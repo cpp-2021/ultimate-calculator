@@ -11,6 +11,7 @@ class Soustraction : public Operation
         void afficher() const;
         void afficherNpi() const;
         float calculer() const;
+        Soustraction* simplifier();
 };
 
 #endif // SOUSTRACTION_H

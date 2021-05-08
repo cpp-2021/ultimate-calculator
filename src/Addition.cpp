@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ctype.h>
 #include "include/Addition.h"
-#include "include/Constante.h"
+#include "include/variable.h"
 
 
 Addition::Addition(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
@@ -29,10 +29,10 @@ float Addition::calculer() const
     return getGauche()->calculer() + getDroite()->calculer();
 }
 
-/*
-Expression* Addition::simplifier() {
-    int a = getGauche()->calculer();
-    int b = getDroite()->calculer();
 
-    return new Division(new Constante(a), new Constante(b));
-}*/
+Addition* Addition::simplifier() {
+    float a = getGauche()->calculer();
+    float b = getDroite()->calculer();
+
+    return new Addition(new Variable(a), new Variable(b));
+}
