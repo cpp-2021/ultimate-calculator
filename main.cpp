@@ -11,7 +11,7 @@
 
 #include "include/RootExpressionSingleton.h"
 
-#include "include/graph2d/graph2dwindow.h"
+#include "include/mainwindow.h"
 
 using namespace std;
 
@@ -19,9 +19,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     
-    //Graph2DWindow w;
-    //w.show();
-
     MainWindow w;
     w.show();
 

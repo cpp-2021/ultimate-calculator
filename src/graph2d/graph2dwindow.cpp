@@ -7,7 +7,7 @@
 using namespace std;
 
 Graph2DWindow::Graph2DWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::Graph2DWindow)
+    : QWidget(parent), ui(new Ui::Graph2DWindow)
 {
     //1) Init UI
     this->title = "TITLE";

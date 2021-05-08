@@ -14,6 +14,7 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
+    mainwindow.cpp \
     src/Addition.cpp \
     src/Constante.cpp \
     src/Division.cpp \
@@ -30,9 +31,11 @@ HEADERS += \
     include/Operation.h \
     include/RootExpressionSingleton.h \
     include/Soustraction.h \
+    include/mainwindow.h \
     include/graph2d/graph2dwindow.h
 
 FORMS += \
+    ui/mainwindow.ui \
     ui/graph2dwindow.ui
 
 # Default rules for deployment.

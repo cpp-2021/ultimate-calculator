@@ -1,7 +1,6 @@
 #ifndef GRAPH2DWINDOW_H
 #define GRAPH2DWINDOW_H
 
-#include <QMainWindow>
 #include <QtWidgets>
 #include <QtCharts>
 
@@ -9,7 +8,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Graph2DWindow; }
 QT_END_NAMESPACE
 
-class Graph2DWindow: public QMainWindow
+class Graph2DWindow: public QWidget
 {
     Q_OBJECT
 
