@@ -23,13 +23,12 @@ SOURCES += \
     src/Ln.cpp \
     src/Multiplication.cpp \
     src/Soustraction.cpp \
-    src/graph2d/graph2dwindow.cpp \
-    src/user_input_ihm/UserInputWindow.cpp
     src/Oppose.cpp \
     src/Puissance.cpp \
     src/RacineCarre.cpp \
-    src/Soustraction.cpp \
-    src/ValAbsolue.cpp
+    src/ValAbsolue.cpp \
+    src/graph2d/graph2dwindow.cpp \
+    src/user_input_ihm/UserInputWindow.cpp \
 
 HEADERS += \
     include/Addition.h \
@@ -46,10 +45,11 @@ HEADERS += \
     include/RacineCarre.h \
     include/RootExpressionSingleton.h \
     include/Soustraction.h \
+    include/ValAbsolue.h \
     include/mainwindow.h \
     include/graph2d/graph2dwindow.h \
-    include/user_input_ihm/UserInputWindow.h
-    include/ValAbsolue.h
+    include/user_input_ihm/UserInputWindow.h \
+
 
 FORMS += \
     ui/mainwindow.ui \
