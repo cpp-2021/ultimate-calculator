@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "include/graph2d/graph2dwindow.h"
+#include "include/user_input_ihm/UserInputWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,7 +30,7 @@ void MainWindow::on_actionload_triggered()
 
 void MainWindow::on_actionEnter_Expression_triggered()
 {
-
+ replaceCentralWidget(new UserInputWindow(this));
 }
 
 void MainWindow::on_actionPrint_Classical_Expression_triggered()

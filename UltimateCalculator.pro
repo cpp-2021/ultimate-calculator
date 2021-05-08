@@ -20,7 +20,8 @@ SOURCES += \
     src/Division.cpp \
     src/Multiplication.cpp \
     src/Soustraction.cpp \
-    src/graph2d/graph2dwindow.cpp
+    src/graph2d/graph2dwindow.cpp \
+    src/user_input_ihm/UserInputWindow.cpp
 
 HEADERS += \
     include/Addition.h \
@@ -32,11 +33,13 @@ HEADERS += \
     include/RootExpressionSingleton.h \
     include/Soustraction.h \
     include/mainwindow.h \
-    include/graph2d/graph2dwindow.h
+    include/graph2d/graph2dwindow.h \
+    include/user_input_ihm/UserInputWindow.h
 
 FORMS += \
     ui/mainwindow.ui \
-    ui/graph2dwindow.ui
+    ui/graph2dwindow.ui \
+    ui/user_input_ihm.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
