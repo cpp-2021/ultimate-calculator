@@ -14,12 +14,12 @@ TEMPLATE = app
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
     src/Addition.cpp \
     src/Constante.cpp \
     src/Division.cpp \
     src/Multiplication.cpp \
-    src/Soustraction.cpp
+    src/Soustraction.cpp \
+    src/graph2d/graph2dwindow.cpp
 
 HEADERS += \
     include/Addition.h \
@@ -30,12 +30,15 @@ HEADERS += \
     include/Operation.h \
     include/RootExpressionSingleton.h \
     include/Soustraction.h \
-    mainwindow.h
+    include/graph2d/graph2dwindow.h
 
 FORMS += \
-    mainwindow.ui
+    ui/graph2dwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    res/modelio.png

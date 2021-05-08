@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "include/graph2d/graph2dwindow.h"
 
 #include <QApplication>
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     cout << endl;
 
     QApplication a(argc, argv);
-    MainWindow w;
+    Graph2DWindow w;
     w.show();
 
     cout << "Exemple singleton : "<< endl;

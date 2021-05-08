@@ -1,17 +1,15 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "include/graph2d/graph2dwindow.h"
+#include "ui_graph2dwindow.h"
 #include <iostream>
 
 #define OFFSET 5;
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+Graph2DWindow::Graph2DWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::Graph2DWindow)
 {
     //1) Init UI
-    ui->setupUi(this);
     this->title = "TITLE";
     this->xMin = -10;
     this->xMax = 10;
@@ -20,69 +18,70 @@ MainWindow::MainWindow(QWidget *parent)
     this->a = 5;
     this->b = 3;
 
+    ui->setupUi(this);
+
     //2) Init btns & graphics view
     initBtns();
     initGraphics();
 }
 
 
-
 // BTNS //
-void MainWindow::initBtns(){
+void Graph2DWindow::initBtns(){
 
     // XMIN
     QPushButton *btn_xmin_inf = findChild<QPushButton*>("xmin_inf");
     QPushButton *btn_xmin_sup = findChild<QPushButton*>("xmin_sup");
-    connect(btn_xmin_inf, &QPushButton::released, this, &MainWindow::xminInf);
-    connect(btn_xmin_sup, &QPushButton::released, this, &MainWindow::xminSup);
+    connect(btn_xmin_inf, &QPushButton::released, this, &Graph2DWindow::xminInf);
+    connect(btn_xmin_sup, &QPushButton::released, this, &Graph2DWindow::xminSup);
 
     // XMAX
     QPushButton *btn_xmax_inf = findChild<QPushButton*>("xmax_inf");
     QPushButton *btn_xmax_sup = findChild<QPushButton*>("xmax_sup");
-    connect(btn_xmax_inf, &QPushButton::released, this, &MainWindow::xmaxInf);
-    connect(btn_xmax_sup, &QPushButton::released, this, &MainWindow::xmaxSup);
+    connect(btn_xmax_inf, &QPushButton::released, this, &Graph2DWindow::xmaxInf);
+    connect(btn_xmax_sup, &QPushButton::released, this, &Graph2DWindow::xmaxSup);
 
     // YMIN
     QPushButton *btn_ymin_inf = findChild<QPushButton*>("ymin_inf");
     QPushButton *btn_ymin_sup = findChild<QPushButton*>("ymin_sup");
-    connect(btn_ymin_inf, &QPushButton::released, this, &MainWindow::yminInf);
-    connect(btn_ymin_sup, &QPushButton::released, this, &MainWindow::yminSup);
+    connect(btn_ymin_inf, &QPushButton::released, this, &Graph2DWindow::yminInf);
+    connect(btn_ymin_sup, &QPushButton::released, this, &Graph2DWindow::yminSup);
 
     // YMAX
     QPushButton *btn_ymax_inf = findChild<QPushButton*>("ymax_inf");
     QPushButton *btn_ymax_sup = findChild<QPushButton*>("ymax_sup");
-    connect(btn_ymax_inf, &QPushButton::released, this, &MainWindow::ymaxInf);
-    connect(btn_ymax_sup, &QPushButton::released, this, &MainWindow::ymaxSup);
+    connect(btn_ymax_inf, &QPushButton::released, this, &Graph2DWindow::ymaxInf);
+    connect(btn_ymax_sup, &QPushButton::released, this, &Graph2DWindow::ymaxSup);
 }
-void MainWindow::xminInf(){
+void Graph2DWindow::xminInf(){
     this->xMin -= OFFSET;
     initGraphics();
 }
-void MainWindow::xminSup(){
+void Graph2DWindow::xminSup(){
     this->xMin += OFFSET;
     initGraphics();
 }
-void MainWindow::yminInf(){
+void Graph2DWindow::yminInf(){
     this->yMin -= OFFSET;
     initGraphics();
 }
-void MainWindow::yminSup(){
+void Graph2DWindow::yminSup(){
     this->yMin += OFFSET;
     initGraphics();
 }
-void MainWindow::xmaxInf(){
+void Graph2DWindow::xmaxInf(){
     this->xMax -= OFFSET;
     initGraphics();
 }
-void MainWindow::xmaxSup(){
+void Graph2DWindow::xmaxSup(){
     this->xMax += OFFSET;
     initGraphics();
 }
-void MainWindow::ymaxInf(){
+void Graph2DWindow::ymaxInf(){
     this->yMax -= OFFSET;
     initGraphics();
 }
-void MainWindow::ymaxSup(){
+void Graph2DWindow::ymaxSup(){
     this->yMax += OFFSET;
     initGraphics();
 }
@@ -90,14 +89,14 @@ void MainWindow::ymaxSup(){
 
 
 // GRAPHICS //
-void MainWindow::initGraphics(){
+void Graph2DWindow::initGraphics(){
     QChartView *graphique = findChild<QChartView*>("graphics");
 
     QLineSeries *courbe = createCurve();
     QChart *graphe = createGraph(courbe);
     graphique->setChart(graphe);
 }
-QLineSeries* MainWindow::createCurve(){
+QLineSeries* Graph2DWindow::createCurve(){
 
     //1) Create curve
     QLineSeries *courbe = new QLineSeries();
@@ -116,7 +115,7 @@ QLineSeries* MainWindow::createCurve(){
 
     return courbe;
 }
-QChart* MainWindow::createGraph(QLineSeries *courbe){
+QChart* Graph2DWindow::createGraph(QLineSeries *courbe){
 
     //1) Init graph & Add curve
     QChart *graph = new QChart();
@@ -135,8 +134,7 @@ QChart* MainWindow::createGraph(QLineSeries *courbe){
 
 
 
-MainWindow::~MainWindow()
+Graph2DWindow::~Graph2DWindow()
 {
     delete ui;
 }
-

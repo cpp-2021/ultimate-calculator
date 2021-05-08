@@ -1,20 +1,20 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef GRAPH2DWINDOW_H
+#define GRAPH2DWINDOW_H
 
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QtCharts>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class Graph2DWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class Graph2DWindow: public QMainWindow
 {
     Q_OBJECT
 
     public:
-        MainWindow(QWidget *parent = nullptr);
+        Graph2DWindow(QWidget *parent = nullptr);
         void handleButton(int axis);
         void initBtns();
         void initGraphics();
@@ -28,10 +28,10 @@ class MainWindow : public QMainWindow
         void xmaxSup();
         void ymaxInf();
         void ymaxSup();
-        ~MainWindow();
+        ~Graph2DWindow();
 
     private:
-        Ui::MainWindow *ui;
+        Ui::Graph2DWindow *ui;
         int a; //TMP
         int b; //TMP
         float xMin;
@@ -40,4 +40,5 @@ class MainWindow : public QMainWindow
         float yMax;
         char *title;
 };
-#endif // MAINWINDOW_H
+
+#endif // GRAPH2DWINDOW_H
