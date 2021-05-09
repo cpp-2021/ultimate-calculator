@@ -104,6 +104,7 @@ void UserInputWindow::NumPressed(){
   * Fill the temp array with left member and operator
   **/
 void UserInputWindow::MathButtonPressed(){
+    //Auto egalite si le membre de droite est deja affecte
     if(tabExpression[1] != ""){
         EqualButton();
     }
@@ -113,6 +114,13 @@ void UserInputWindow::MathButtonPressed(){
     tabExpression[0] = chaineRentree;
     tabExpression[1] = butval;
     chaineRentree = "";
+
+    //Auto egalite sur appui d'une operation a un membre
+    QByteArray ba = butval.toLocal8Bit();
+    const char* op = ba.data();
+    if(op[0] == 'x' || op[0] == 'l' || op[0] == '(' || op[0] == '|' || op[0] == 'L' || op[0] == 'v'){
+        EqualButton();
+    }
 }
 
 /**
@@ -201,6 +209,7 @@ void UserInputWindow::ClearButton(){
     ui->Display->setText(chaineRentree);
     ui->Expression->setText("");
     delete RootExpressionSingleton::instance().get();
+    RootExpressionSingleton::instance().set(nullptr);
 }
 
 void UserInputWindow::AddVirgule(){
