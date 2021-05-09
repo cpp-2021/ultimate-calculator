@@ -1,22 +1,23 @@
-#ifndef VARIABLE_H
-#define VARIABLE_H
+#ifndef SYMBOLESTABLE_H
+#define SYMBOLESTABLE_H
 
-#include "Operation.h"
+#include "variable.h"
+#include "Expression.h"
 
-class Variable : public Expression
+class Symboletable : public Variable
 {
-public:
-//l'appel a toutes les fonctions
-    Variable(float f = 0.0f);
+    public:
+        Symboletable();
+        virtual ~Symboletable();
 
-    float getValeur() const { return _valeur; }
+        int hashf(char id); // hash function
+        bool insert(char id, float value);
+        char find(char id);
+        bool deleteRecord(char id);
+        bool modify(char id, float value);
 
-
-    void afficher() const;
-    void afficherNpi() const;
-    float calculer() const;
-
-private:
-    float _valeur;
+        Variable * list[100];
+    private:
 };
-#endif // VARIABLE_H
+
+#endif // SYMBOLESTABLE_H
