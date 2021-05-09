@@ -5,20 +5,14 @@ Inverse::Inverse(Expression* exp) : _toInverse(exp) {
 
 }
 
-void Inverse::afficher() const
+std::string Inverse::toString() const
 {
-    std::cout << "(1";
-    std::cout << "/";
-    _toInverse->afficher();
-    std::cout << ")";
+    return "(1 /" + _toInverse->toString() + ")";
 }
 
-void Inverse::afficherNpi() const
+std::string Inverse::toStringNpi() const
 {
-    std::cout << "(1";
-    std::cout << " ";
-    _toInverse->afficherNpi();
-    std::cout << " /)";
+    return "(1 " + _toInverse->toStringNpi() + " /)";
 }
 
 float Inverse::calculer() const

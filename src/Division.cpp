@@ -5,19 +5,14 @@
 
 Division::Division(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
 
-void Division::afficher() const
+std::string Division::toString() const
 {
-    getGauche()->afficher();
-    std::cout << "/";
-    getDroite()->afficher();
+    return getGauche()->toString() + "/" + getDroite()->toString();
 }
 
-void Division::afficherNpi() const
+std::string Division::toStringNpi() const
 {
-    getGauche()->afficherNpi();
-    std::cout << " ";
-    getDroite()->afficherNpi();
-    std::cout << " /";
+    return getGauche()->toStringNpi() + " " + getDroite()->toStringNpi();
 }
 
 float Division::calculer() const

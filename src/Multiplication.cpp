@@ -5,19 +5,14 @@
 
 Multiplication::Multiplication(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
 
-void Multiplication::afficher() const
+std::string Multiplication::toString() const
 {
-    getGauche()->afficher();
-    std::cout << "*";
-    getDroite()->afficher();
+    return getGauche()->toString() + "*" + getDroite()->toString();
 }
 
-void Multiplication::afficherNpi() const
+std::string Multiplication::toStringNpi() const
 {
-    getGauche()->afficherNpi();
-    std::cout << " ";
-    getDroite()->afficherNpi();
-    std::cout << " *";
+    return getGauche()->toStringNpi() + " " + getDroite()->toStringNpi() + " *";
 }
 
 float Multiplication::calculer() const

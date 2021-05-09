@@ -14,8 +14,9 @@ class Operation: public Expression
         Expression *getGauche() const { return _gauche; }
         Expression *getDroite() const { return _droite; }
 
-        virtual void afficher() const = 0;
-        virtual void afficherNpi() const = 0;
+        std::string toString() const = 0;
+        std::string toStringNpi() const = 0;
+
         virtual float calculer() const = 0;
 };
 

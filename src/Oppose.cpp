@@ -4,20 +4,14 @@
 
 Oppose::Oppose(float f) : Constante(f){}
 
-void Oppose::afficher() const
+std::string Oppose::toString() const
 {
-    std::cout << "(0";
-    std::cout << "-";
-    getValeur();
-    std::cout << ")";
+    return "(-" + std::to_string(getValeur()) + ")";
 }
 
-void Oppose::afficherNpi() const
+std::string Oppose::toStringNpi() const
 {
-    std::cout << "(0";
-    getValeur();
-    std::cout << " ";
-    std::cout << " -)";
+    return "(0 " + std::to_string(getValeur()) + " -)";
 }
 
 float Oppose::calculer() const

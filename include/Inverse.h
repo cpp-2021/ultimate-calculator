@@ -12,8 +12,8 @@ class Inverse: public Expression
     public:
         Inverse(Expression *exp);
 
-        void afficher() const;
-        void afficherNpi() const;
+        std::string toString() const;
+        std::string toStringNpi() const;
         float calculer() const;
 };
 

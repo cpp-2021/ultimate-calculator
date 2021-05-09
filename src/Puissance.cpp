@@ -2,22 +2,14 @@
 #include <iostream>
 Puissance::Puissance(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
 
-void Puissance::afficher() const
+std::string Puissance::toString() const
 {
-    std::cout << "(";
-    getGauche()->afficher();
-    std::cout << "^";
-    getDroite()->afficher();
-    std::cout << ")";
+    return "(" + getGauche()->toString() + "^" + getDroite()->toString() + ")";
 }
 
-void Puissance::afficherNpi() const
+std::string Puissance::toStringNpi() const
 {
-    std::cout << "(";
-    getGauche()->afficherNpi();
-    std::cout << " ";
-    getDroite()->afficherNpi();
-    std::cout << " ^)";
+    return "( " + getGauche()->toStringNpi() + " " + getDroite()->toStringNpi() + " ^)";
 }
 
 float Puissance::calculer() const

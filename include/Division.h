@@ -9,8 +9,8 @@ class Division: public Operation
     public:
         Division(Expression *gauche, Expression *droite);
 
-        void afficher() const;
-        void afficherNpi() const;
+        std::string toString() const;
+        std::string toStringNpi() const;
         float calculer() const;
         Division* simplifier();
 };

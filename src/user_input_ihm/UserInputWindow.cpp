@@ -18,11 +18,12 @@ using namespace std;
 bool waitMember = false;
 
 QString chaineRentree = "";
-QString tabExpression[3];
+QString tabExpression[3] = {"0"};
 
 UserInputWindow::UserInputWindow(QWidget *parent)
-    : QWidget(parent), ui(new Ui::UserInputWindow)
+    : QWidget(parent), ui(new Ui::UserInputWindow), _npiMode(false)
 {
+    RootExpressionSingleton::instance().set(new Addition(new Constante(0), new Constante(0)));
     ui->setupUi(this);
     ui->Display->setText(chaineRentree);
 
@@ -116,9 +117,6 @@ void UserInputWindow::EqualButton()
         expr = new Division(membreGauche, membreDroite);
         RootExpressionSingleton::instance().set(expr);
         break;
-
-
-
     }
 
     float res =  RootExpressionSingleton::instance().get()->calculer();
@@ -127,9 +125,13 @@ void UserInputWindow::EqualButton()
     QString finalRes = QString::number(res);
     chaineRentree = finalRes;
 
-    QString p("hello");
-    //QString(RootExpressionSingleton::instance().get().toString()) str;
-    ui->Expression->setText(p);
+    if(_npiMode){
+        QString p(RootExpressionSingleton::instance().get()->toStringNpi().c_str());
+        ui->Expression->setText(p);
+    }else{
+        QString p(RootExpressionSingleton::instance().get()->toString().c_str());
+        ui->Expression->setText(p);
+    }
 }
 
 /**
@@ -141,6 +143,7 @@ void UserInputWindow::ClearButton(){
     tabExpression[2] = "";
     chaineRentree = "";
     ui->Display->setText(chaineRentree);
+    RootExpressionSingleton::instance().set(new Addition(new Constante(0), new Constante(0)));
 }
 
 void UserInputWindow::AddVirgule(){

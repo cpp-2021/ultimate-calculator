@@ -10,8 +10,8 @@ class RacineCarre: public Constante
     public:
         RacineCarre(float f);
 
-        void afficher() const;
-        void afficherNpi() const;
+        std::string toString() const;
+        std::string toStringNpi() const;
         float calculer() const;
 };
 

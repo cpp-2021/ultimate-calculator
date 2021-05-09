@@ -8,8 +8,8 @@ class Multiplication: public Operation
     public:
         Multiplication(Expression *gauche, Expression *droite);
 
-        void afficher() const;
-        void afficherNpi() const;
+        std::string toString() const;
+        std::string toStringNpi() const;
         float calculer() const;
         Multiplication* simplifier();
 };

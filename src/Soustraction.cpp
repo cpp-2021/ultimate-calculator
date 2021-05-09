@@ -5,22 +5,14 @@
 
 Soustraction::Soustraction(Expression *gauche, Expression *droite) : Operation(gauche, droite) {}
 
-void Soustraction::afficher() const
+std::string Soustraction::toString() const
 {
-    std::cout << "(";
-    getGauche()->afficher();
-    std::cout << "-";
-    getDroite()->afficher();
-    std::cout << ")";
+    return "(" + getGauche()->toString() + "-" + getDroite()->toStringNpi() + ")";
 }
 
-void Soustraction::afficherNpi() const
+std::string Soustraction::toStringNpi() const
 {
-    std::cout << "(";
-    getGauche()->afficherNpi();
-    std::cout << " ";
-    getDroite()->afficherNpi();
-    std::cout << " -)";
+    return "(" + getGauche()->toString() + " " + getDroite()->toStringNpi() + " -)";
 }
 
 float Soustraction::calculer() const

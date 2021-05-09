@@ -14,8 +14,8 @@ class Constante : public Expression
 
         float getValeur() const { return _valeur; }
 
-        void afficher() const;
-        void afficherNpi() const;
+        std::string toString() const;
+        std::string toStringNpi() const;
         float calculer() const;
 
         virtual ~Constante();

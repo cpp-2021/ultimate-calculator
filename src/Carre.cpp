@@ -3,22 +3,14 @@
 #include <iostream>
 Carre::Carre(float f) : Constante(f){}
 
-void Carre::afficher() const
+std::string Carre::toString() const
 {
-    std::cout << "(";
-    getValeur();
-    std::cout << "*";
-    getValeur();
-    std::cout << ")";
+    return std::to_string(getValeur()) + "²";
 }
 
-void Carre::afficherNpi() const
+std::string Carre::toStringNpi() const
 {
-    std::cout << "(";
-    getValeur();
-    std::cout << " ";
-    getValeur();
-    std::cout << " *)";
+    return toString();
 }
 
 float Carre::calculer() const
