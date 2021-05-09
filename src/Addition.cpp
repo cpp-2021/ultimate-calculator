@@ -4,22 +4,14 @@
 
 Addition::Addition(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
 
-void Addition::afficher() const
+std::string Addition::toString() const
 {
-    std::cout << "(";
-    getGauche()->afficher();
-    std::cout << "+";
-    getDroite()->afficher();
-    std::cout << ")";
+    return "(" + getGauche()->toString() + "+" + getGauche()->toString() + ")";
 }
 
-void Addition::afficherNpi() const
+std::string Addition::toStringNpi() const
 {
-    std::cout << "(";
-    getGauche()->afficherNpi();
-    std::cout << " ";
-    getDroite()->afficherNpi();
-    std::cout << " +)";
+    return "(" + getGauche()->toString() + " " + getGauche()->toString() + " +)";
 }
 
 float Addition::calculer() const

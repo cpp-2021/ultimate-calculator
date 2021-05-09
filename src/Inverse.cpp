@@ -3,20 +3,14 @@
 #include <iostream>
 Inverse::Inverse(float f) : Constante(f){}
 
-void Inverse::afficher() const
+std::string Inverse::toString() const
 {
-    std::cout << "(1";
-    std::cout << "/";
-    getValeur();
-    std::cout << ")";
+    return "(1 /" + std::to_string(getValeur()) + ")";
 }
 
-void Inverse::afficherNpi() const
+std::string Inverse::toStringNpi() const
 {
-    std::cout << "(1";
-    std::cout << " ";
-    getValeur();
-    std::cout << " /)";
+    return "(1 " + std::to_string(getValeur()) + " /)";
 }
 
 float Inverse::calculer() const

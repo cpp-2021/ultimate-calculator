@@ -3,19 +3,14 @@
 #include <iostream>
 ValAbsolue::ValAbsolue(float f) : Constante(f){}
 
-void ValAbsolue::afficher() const
+std::string ValAbsolue::toString() const
 {
-    std::cout << "(|";
-    getValeur();
-    std::cout << "|)";
+    return "|" + std::to_string(getValeur()) + "|";
 }
 
-void ValAbsolue::afficherNpi() const
+std::string ValAbsolue::toStringNpi() const
 {
-    std::cout << "(|";
-    getValeur();
-    std::cout << " ";
-    std::cout << " |)";
+    return std::to_string(getValeur()) + "||";
 }
 
 float ValAbsolue::calculer() const

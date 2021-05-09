@@ -8,8 +8,8 @@ class Soustraction : public Operation
     public:
         Soustraction(Expression *gauche, Expression *droite);
 
-        void afficher() const;
-        void afficherNpi() const;
+        std::string toString() const;
+        std::string toStringNpi() const;
         float calculer() const;
 };
 

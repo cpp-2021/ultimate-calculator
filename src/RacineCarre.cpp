@@ -3,20 +3,14 @@
 #include <iostream>
 RacineCarre::RacineCarre(float f) : Constante(f){}
 
-void RacineCarre::afficher() const
+std::string RacineCarre::toString() const
 {
-    std::cout << "(";
-    std::cout << "√";
-    getValeur();
-    std::cout << ")";
+    return "√(" + std::to_string(getValeur()) + ")";
 }
 
-void RacineCarre::afficherNpi() const
+std::string RacineCarre::toStringNpi() const
 {
-    std::cout << "(";
-    getValeur();
-    std::cout << " ";
-    std::cout << " √)";
+    return "(" + std::to_string(getValeur()) + ")√";
 }
 
 float RacineCarre::calculer() const

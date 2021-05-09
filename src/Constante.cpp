@@ -4,14 +4,14 @@
 
 Constante::Constante(float f) : _valeur(f){}
 
-void Constante::afficher() const
+std::string Constante::toString() const
 {
-    std::cout << getValeur();
+    return std::to_string(getValeur());
 }
 
-void Constante::afficherNpi() const
+std::string Constante::toStringNpi() const
 {
-    afficher();
+    return toString();
 }
 
 float Constante::calculer() const

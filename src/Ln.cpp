@@ -4,19 +4,14 @@
 
 Ln::Ln(float f) : Constante(f){}
 
-void Ln::afficher() const
+std::string Ln::toString() const
 {
-    std::cout << "(ln(";
-    getValeur();
-    std::cout << "))";
+    return "(ln(" + std::to_string(getValeur()) + "))";
 }
 
-void Ln::afficherNpi() const
+std::string Ln::toStringNpi() const
 {
-    std::cout << "(";
-    getValeur();
-    std::cout << " ";
-    std::cout << "ln())";
+    return "(" + std::to_string(getValeur()) + " ln())";
 }
 
 float Ln::calculer() const
