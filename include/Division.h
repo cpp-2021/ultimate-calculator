@@ -12,7 +12,8 @@ class Division: public Operation
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
-        Division* simplifier();
+
+        Expression* simplifier() override;
 };
 
 #endif // DIVISION_H

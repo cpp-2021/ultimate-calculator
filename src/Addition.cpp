@@ -18,3 +18,10 @@ float Addition::calculer() const
 {
     return getGauche()->calculer() + getDroite()->calculer();
 }
+
+Expression* Addition::simplifier() {
+    float a = getGauche()->calculer();
+    float b = getDroite()->calculer();
+
+    return new Addition(new Constante(a), new Constante(b));
+}

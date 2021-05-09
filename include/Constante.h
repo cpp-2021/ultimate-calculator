@@ -19,6 +19,8 @@ class Constante : public Expression
         float calculer() const;
 
         virtual ~Constante();
+
+        Expression* simplifier() override;
 };
 
 #endif // CONSTANTE_H

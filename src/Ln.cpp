@@ -18,3 +18,7 @@ float Ln::calculer() const
 {
     return  log(_toLn->calculer());
 }
+
+Expression* Ln::simplifier(){
+    return this;
+}

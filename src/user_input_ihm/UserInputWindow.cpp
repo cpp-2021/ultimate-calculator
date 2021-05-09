@@ -51,6 +51,8 @@ UserInputWindow::UserInputWindow(QWidget *parent)
             SLOT(MathButtonPressed()));
     connect(ui->ButtonMult, SIGNAL(released()), this,
             SLOT(MathButtonPressed()));
+    connect(ui->ButtonDiv, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
     connect(ui->ButtonCarre, SIGNAL(released()), this,
             SLOT(MathButtonPressed()));
     connect(ui->ButtonRacine, SIGNAL(released()), this,
@@ -102,6 +104,9 @@ void UserInputWindow::NumPressed(){
   * Fill the temp array with left member and operator
   **/
 void UserInputWindow::MathButtonPressed(){
+    if(tabExpression[1] != ""){
+        EqualButton();
+    }
     QPushButton *button = (QPushButton *)sender();
     QString butval = button->text();
     Constante *cons = new Constante(chaineRentree.toFloat());
@@ -119,8 +124,16 @@ void UserInputWindow::EqualButton()
 {
     tabExpression[2] = chaineRentree;
     Expression *expr = nullptr;
-    Constante *membreGauche = new Constante(tabExpression[0].toFloat());
-    Constante *membreDroite = new Constante(tabExpression[2].toFloat());
+
+    Expression *curExpression = RootExpressionSingleton::instance().get();
+    Expression *membreGauche;
+    if(curExpression != nullptr){
+        membreGauche = curExpression;
+    }else{
+        membreGauche = new Constante(tabExpression[0].toFloat());
+    }
+
+    Expression *membreDroite = new Constante(tabExpression[2].toFloat());
 
     QByteArray ba = tabExpression[1].toLocal8Bit();
     const char* op = ba.data();

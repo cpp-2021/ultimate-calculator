@@ -20,12 +20,6 @@ std::string Variable::toStringNpi() const{
     return _nom;
 }
 
-void Variable::afficher() const
-{
-    std::cout << toString();
-}
-
-void Variable::afficherNpi() const
-{
-     std::cout << toStringNpi();
+Expression* Variable::simplifier(){
+    return this;
 }

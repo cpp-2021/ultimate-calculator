@@ -15,6 +15,8 @@ class Inverse: public Expression
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
+
+        Expression* simplifier() override;
 };
 
 #endif // INVERSE_H

@@ -18,3 +18,7 @@ float Carre::calculer() const
     float temp = _toSquare->calculer();
     return temp*temp;
 }
+
+Expression* Carre::simplifier(){
+    return this;
+}

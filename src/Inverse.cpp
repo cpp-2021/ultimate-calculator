@@ -19,3 +19,7 @@ float Inverse::calculer() const
 {
     return  1 / _toInverse->calculer();
 }
+
+Expression* Inverse::simplifier(){
+    return this;
+}

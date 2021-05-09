@@ -18,3 +18,7 @@ float Oppose::calculer() const
 {
     return  0 - _toOpposite->calculer();
 }
+
+Expression* Oppose::simplifier(){
+    return this;
+}

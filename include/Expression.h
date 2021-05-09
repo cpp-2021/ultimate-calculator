@@ -14,6 +14,8 @@ class Expression
         virtual void afficherNpi() const { std::cout << toStringNpi(); }
         virtual float calculer() const = 0;
 
+        virtual Expression* simplifier(){return 0;}
+
         virtual ~Expression(){}
 };
 

@@ -20,7 +20,7 @@ float Multiplication::calculer() const
     return getGauche()->calculer() * getDroite()->calculer();
 }
 
-Multiplication* Multiplication::simplifier() {
+Expression* Multiplication::simplifier() {
     float a = getGauche()->calculer();
     float b = getDroite()->calculer();
 

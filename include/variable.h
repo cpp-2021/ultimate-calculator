@@ -13,14 +13,12 @@ public:
 
     Variable(std::string n, float f = 0.0f);
 
-    std::string toString() const;
-    std::string toStringNpi() const;
-
-    //Workaround
-    void afficher() const override;
-    void afficherNpi() const override;
+    std::string toString() const override;
+    std::string toStringNpi() const override;
 
     virtual ~Variable();
+
+     Expression* simplifier() override;
 };
 
 #endif // VARIABLE_H

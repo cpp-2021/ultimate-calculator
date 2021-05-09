@@ -24,3 +24,7 @@ float Constante::calculer() const
 }
 
 Constante::~Constante(){}
+
+Expression* Constante::simplifier(){
+    return this;
+}

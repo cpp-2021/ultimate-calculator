@@ -20,7 +20,7 @@ float Soustraction::calculer() const
     return getGauche()->calculer() - getDroite()->calculer();
 }
 
-Soustraction* Soustraction::simplifier() {
+Expression* Soustraction::simplifier() {
     float a = getGauche()->calculer();
     float b = getDroite()->calculer();
 

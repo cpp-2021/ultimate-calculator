@@ -11,7 +11,8 @@ class Multiplication: public Operation
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
-        Multiplication* simplifier();
+
+         Expression* simplifier() override;
 };
 
 #endif // MULTIPLICATION_H

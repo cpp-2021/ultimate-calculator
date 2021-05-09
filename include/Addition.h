@@ -12,7 +12,8 @@ class Addition: public Operation
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
-        Addition* simplifier();
+
+        Expression* simplifier() override;
 };
 
 #endif // ADDITION_H

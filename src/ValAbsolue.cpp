@@ -18,3 +18,6 @@ float ValAbsolue::calculer() const
     return  abs(_toAbsolute->calculer());
 }
 
+Expression* ValAbsolue::simplifier(){
+    return this;
+}

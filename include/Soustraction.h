@@ -11,7 +11,8 @@ class Soustraction : public Operation
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
-        Soustraction* simplifier();
+
+        Expression* simplifier() override;
 };
 
 #endif // SOUSTRACTION_H

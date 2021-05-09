@@ -17,3 +17,7 @@ float RacineCarre::calculer() const
 {
     return  sqrt(_toSquareRoot->calculer());
 }
+
+Expression* RacineCarre::simplifier(){
+    return this;
+}

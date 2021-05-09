@@ -18,6 +18,8 @@ class Operation: public Expression
         std::string toStringNpi() const = 0;
 
         virtual float calculer() const = 0;
+        virtual Expression* simplifier(){return 0;}
+
 };
 
 #endif // OPERATION_H

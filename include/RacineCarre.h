@@ -16,6 +16,8 @@ class RacineCarre: public Expression
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
+
+        Expression* simplifier() override;
 };
 
 

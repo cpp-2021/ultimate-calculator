@@ -12,6 +12,8 @@ class Puissance: public Operation
         std::string toString() const;
         std::string toStringNpi() const;
         float calculer() const;
+
+        Expression* simplifier() override;
 };
 
 #endif // PUISSANCE_H

@@ -16,3 +16,7 @@ float Puissance::calculer() const
 {
     return  pow(getGauche()->calculer(), getDroite()->calculer());
 }
+
+Expression* Puissance::simplifier(){
+    return this;
+}

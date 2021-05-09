@@ -1,6 +1,8 @@
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <iostream>
+
 #include "include/graph2d/graph2dwindow.h"
 #include "include/user_input_ihm/UserInputWindow.h"
 
@@ -66,7 +68,12 @@ void MainWindow::on_actionGraphical_3D_Print_triggered()
 
 void MainWindow::on_actionSimplify_Expression_triggered()
 {
-
+   RootExpressionSingleton singleton = RootExpressionSingleton::instance();
+   Expression * r = singleton.get();
+   if(r != nullptr){
+     singleton.set(r->simplifier());
+     r->afficher(); std::cout << std::endl;
+   }
 }
 
 void MainWindow::replaceCentralWidget(QWidget *newOne){
