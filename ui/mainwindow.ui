@@ -35,9 +35,6 @@
      <string>Edition</string>
     </property>
     <addaction name="actionEnter_Expression"/>
-    <addaction name="actionPrint_Classical_Expression"/>
-    <addaction name="actionPrint_P_I_Expression"/>
-    <addaction name="actionPrint_Value_Expression"/>
     <addaction name="actionGraphical_2D_Print"/>
     <addaction name="actionGraphical_3D_Print"/>
    </widget>
@@ -67,7 +64,7 @@
     <string>Enter Expression</string>
    </property>
   </action>
-  <action name="actionPrint_Classical_Expression">
+  <action name="action">
    <property name="text">
     <string>Print Classical Expression </string>
    </property>
