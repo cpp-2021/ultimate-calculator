@@ -31,7 +31,6 @@ QString tabExpression[3] = {"0"};
 UserInputWindow::UserInputWindow(QWidget *parent)
     : QWidget(parent), ui(new Ui::UserInputWindow), _npiMode(false)
 {
-    RootExpressionSingleton::instance().set(new Addition(new Constante(0), new Constante(0)));
     ui->setupUi(this);
     ui->Display->setText(chaineRentree);
 
@@ -66,12 +65,12 @@ UserInputWindow::UserInputWindow(QWidget *parent)
             SLOT(MathButtonPressed()));
     connect(ui->ButtonInverse, SIGNAL(released()), this,
             SLOT(MathButtonPressed()));
-    connect(ui->ButtonNpiClassic, SIGNAL(released()), this,
-            SLOT(MathButtonPressed()));
-
     connect(ui->ButtonEquals, SIGNAL(released()), this,
             SLOT(EqualButton()));
 
+    // Connect NPI Button
+    connect(ui->ButtonNpiClassic, SIGNAL(released()), this,
+            SLOT(NpiSwitchButton()));
 
     // Connect clear button
     connect(ui->ButtonAC, SIGNAL(released()), this,
@@ -118,8 +117,11 @@ void UserInputWindow::MathButtonPressed(){
   **/
 void UserInputWindow::EqualButton()
 {
+    if(chaineRentree == "")
+        return;
+
     tabExpression[2] = chaineRentree;
-    Expression *expr;
+    Expression *expr = nullptr;
     Constante *membreGauche = new Constante(tabExpression[0].toFloat());
     Constante *membreDroite = new Constante(tabExpression[2].toFloat());
 
@@ -128,50 +130,36 @@ void UserInputWindow::EqualButton()
     switch (op[0]){
         case '+':
             expr = new Addition(membreGauche, membreDroite);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case '-':
             expr = new Soustraction(membreGauche, membreDroite);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case '*':
             expr = new Multiplication(membreGauche, membreDroite);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case '/':
             expr = new Division(membreGauche, membreDroite);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case 'x':
             expr = new Carre(membreGauche);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case 'l':
             expr = new Inverse(membreGauche);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case '(':
             expr = new Oppose(membreGauche);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case '|':
             expr = new ValAbsolue(membreGauche);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case 'L':
             expr = new Ln(membreGauche);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case 'v':
             expr = new RacineCarre(membreGauche);
-            RootExpressionSingleton::instance().set(expr);
             break;
         case 'p':
             expr = new Puissance(membreGauche, membreDroite);
-            RootExpressionSingleton::instance().set(expr);
-            break;
-        case 'N':
-            _npiMode = !_npiMode;
             break;
 
         default:
@@ -179,19 +167,15 @@ void UserInputWindow::EqualButton()
             break;
     }
 
+
+    RootExpressionSingleton::instance().set(expr);
     float res =  RootExpressionSingleton::instance().get()->calculer();
     ui->Display->setText(QString::number(res));
     std::cout << res << std::endl;
     QString finalRes = QString::number(res);
     chaineRentree = finalRes;
 
-    if(_npiMode){
-        QString p(RootExpressionSingleton::instance().get()->toStringNpi().c_str());
-        ui->Expression->setText(p);
-    }else{
-        QString p(RootExpressionSingleton::instance().get()->toString().c_str());
-        ui->Expression->setText(p);
-    }
+    refreshExprDisplay();
 }
 
 /**
@@ -203,10 +187,33 @@ void UserInputWindow::ClearButton(){
     tabExpression[2] = "";
     chaineRentree = "";
     ui->Display->setText(chaineRentree);
-    RootExpressionSingleton::instance().set(new Addition(new Constante(0), new Constante(0)));
+    ui->Expression->setText("");
+    delete RootExpressionSingleton::instance().get();
 }
 
 void UserInputWindow::AddVirgule(){
     chaineRentree += '.';
     ui->Display->setText(ui->Display->text() + ".");
+}
+
+void UserInputWindow::NpiSwitchButton(){
+    _npiMode = !_npiMode;
+    refreshExprDisplay();
+}
+
+void UserInputWindow::refreshExprDisplay(){
+    if(chaineRentree == "")
+        return;
+
+    std::string tmp = "";
+    Constante res(RootExpressionSingleton::instance().get()->calculer());
+    if(_npiMode){
+        tmp = RootExpressionSingleton::instance().get()->toStringNpi();
+    }else{
+        tmp = RootExpressionSingleton::instance().get()->toString();
+    }
+    tmp += " = " + res.toString();
+
+    QString p(tmp.c_str());
+    ui->Expression->setText(p);
 }

@@ -19,12 +19,15 @@ private:
     Ui::UserInputWindow *ui;
     bool _npiMode;
 
+    void refreshExprDisplay();
+
 private slots:
     void NumPressed();
     void MathButtonPressed();
     void EqualButton();
     void ClearButton();
     void AddVirgule();
+    void NpiSwitchButton();
 };
 
 

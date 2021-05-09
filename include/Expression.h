@@ -13,6 +13,8 @@ class Expression
         virtual void afficher() const { std::cout << toString(); }
         virtual void afficherNpi() const { std::cout << toStringNpi(); }
         virtual float calculer() const = 0;
+
+        virtual ~Expression(){}
 };
 
 #endif // EXPRESSION_H
