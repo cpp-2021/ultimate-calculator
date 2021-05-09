@@ -5,10 +5,12 @@
 #include "Constante.h"
 
 
-class Ln: public Constante
+class Ln: public Expression
 {
+    private:
+        Expression *_toLn;
     public:
-        Ln(float f);
+        Ln(Expression *exp);
 
         std::string toString() const;
         std::string toStringNpi() const;

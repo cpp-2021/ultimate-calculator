@@ -6,10 +6,12 @@
 #include "Constante.h"
 
 
-class ValAbsolue: public Constante
+class ValAbsolue: public Expression
 {
+    private:
+        Expression *_toAbsolute;
     public:
-        ValAbsolue(float f);
+        ValAbsolue(Expression *exp);
 
         std::string toString() const;
         std::string toStringNpi() const;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>385</width>
-    <height>287</height>
+    <height>292</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -75,7 +75,7 @@ QPushButton:pressed {
 }</string>
      </property>
      <property name="text">
-      <string>x^</string>
+      <string>puissance</string>
      </property>
     </widget>
    </item>
@@ -769,7 +769,7 @@ QPushButton:pressed {
 }</string>
      </property>
      <property name="text">
-      <string>1/x</string>
+      <string>l/x</string>
      </property>
     </widget>
    </item>

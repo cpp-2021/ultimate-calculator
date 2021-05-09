@@ -2,19 +2,19 @@
 
 #include <iostream>
 
-Ln::Ln(float f) : Constante(f){}
+Ln::Ln(Expression *exp) : _toLn(exp){}
 
 std::string Ln::toString() const
 {
-    return "(ln(" + std::to_string(getValeur()) + "))";
+    return "(ln(" + _toLn->toString() + "))";
 }
 
 std::string Ln::toStringNpi() const
 {
-    return "(" + std::to_string(getValeur()) + " ln())";
+    return "(" + _toLn->toString() + " ln())";
 }
 
 float Ln::calculer() const
 {
-    return  log(getValeur());
+    return  log(_toLn->calculer());
 }
