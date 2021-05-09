@@ -117,9 +117,6 @@ void UserInputWindow::MathButtonPressed(){
   **/
 void UserInputWindow::EqualButton()
 {
-    if(chaineRentree == "")
-        return;
-
     tabExpression[2] = chaineRentree;
     Expression *expr = nullptr;
     Constante *membreGauche = new Constante(tabExpression[0].toFloat());
@@ -167,6 +164,8 @@ void UserInputWindow::EqualButton()
             break;
     }
 
+    if(tabExpression[0] == "")
+        return;
 
     RootExpressionSingleton::instance().set(expr);
     float res =  RootExpressionSingleton::instance().get()->calculer();
