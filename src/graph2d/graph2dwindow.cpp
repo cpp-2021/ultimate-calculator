@@ -2,6 +2,9 @@
 #include "ui_graph2dwindow.h"
 #include <iostream>
 
+#include "include/RootExpressionSingleton.h"
+#include "include/Constante.h"
+
 #define OFFSET 5;
 
 using namespace std;
@@ -10,7 +13,7 @@ Graph2DWindow::Graph2DWindow(QWidget *parent)
     : QWidget(parent), ui(new Ui::Graph2DWindow)
 {
     //1) Init UI
-    this->title = "TITLE";
+    this->title = "2D Graphic";
     this->xMin = -10;
     this->xMax = 10;
     this->yMin = -10;
@@ -19,6 +22,11 @@ Graph2DWindow::Graph2DWindow(QWidget *parent)
     this->b = 3;
 
     ui->setupUi(this);
+
+    if(parent == nullptr){
+        //Define classic window size if the window is null
+        this->resize(800,600);
+    }
 
     //2) Init btns & graphics view
     initBtns();
@@ -92,17 +100,25 @@ void Graph2DWindow::ymaxSup(){
 void Graph2DWindow::initGraphics(){
     QChartView *graphique = findChild<QChartView*>("graphics");
 
-    QLineSeries *courbe = createCurve();
-    QChart *graphe = createGraph(courbe);
-    graphique->setChart(graphe);
+    Expression *myExpression = RootExpressionSingleton::instance().get();
+    if(myExpression != nullptr){
+        QLineSeries *courbe = createCurve();
+        courbe->setName(RootExpressionSingleton::instance().get()->toString().c_str());
+        QChart *graphe = createGraph(courbe);
+        graphique->setChart(graphe);
+    }
+
 }
 QLineSeries* Graph2DWindow::createCurve(){
 
     //1) Create curve
     QLineSeries *courbe = new QLineSeries();
+    Expression * expr = RootExpressionSingleton::instance().get();
+
     for(float x=xMin; x<xMax; x+=0.1f)
     {
-        float y = x*x;
+        //TODO : remplacer x dans la courbe (ou autre variable)
+        float y = expr->calculer();
         *courbe << QPointF(x, y);
     }
 
