@@ -6,12 +6,12 @@ Soustraction::Soustraction(Expression *gauche, Expression *droite) : Operation(g
 
 std::string Soustraction::toString() const
 {
-    return getGauche()->toString() + "-" + getDroite()->toStringNpi();
+    return "(" + getGauche()->toString() + "-" + getDroite()->toStringNpi() + ")";
 }
 
 std::string Soustraction::toStringNpi() const
 {
-    return getGauche()->toString() + " " + getDroite()->toStringNpi() + " -";
+    return "(" + getGauche()->toString() + " " + getDroite()->toStringNpi() + " -)";
 }
 
 float Soustraction::calculer() const

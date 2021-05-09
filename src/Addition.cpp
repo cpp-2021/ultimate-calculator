@@ -6,12 +6,12 @@ Addition::Addition(Expression *gauche, Expression *droite) : Operation(gauche, d
 
 std::string Addition::toString() const
 {
-    return "(" + getGauche()->toString() + "+" + getGauche()->toString() + ")";
+    return "(" + getGauche()->toString() + "+" + getDroite()->toString() + ")";
 }
 
 std::string Addition::toStringNpi() const
 {
-    return "(" + getGauche()->toString() + " " + getGauche()->toString() + " +)";
+    return "(" + getGauche()->toString() + " " + getDroite()->toString() + " +)";
 }
 
 float Addition::calculer() const

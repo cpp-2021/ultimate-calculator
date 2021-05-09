@@ -116,9 +116,6 @@ void UserInputWindow::EqualButton()
         expr = new Division(membreGauche, membreDroite);
         RootExpressionSingleton::instance().set(expr);
         break;
-
-
-
     }
 
     float res =  RootExpressionSingleton::instance().get()->calculer();
@@ -127,8 +124,7 @@ void UserInputWindow::EqualButton()
     QString finalRes = QString::number(res);
     chaineRentree = finalRes;
 
-    QString p("hello");
-    //QString(RootExpressionSingleton::instance().get().toString()) str;
+    QString p(RootExpressionSingleton::instance().get()->toString().c_str());
     ui->Expression->setText(p);
 }
 
