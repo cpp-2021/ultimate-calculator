@@ -1,13 +1,16 @@
 #ifndef INVERSE_H
 #define INVERSE_H
 
-#include "Constante.h"
+#include "Operation.h"
 
 
-class Inverse: public Constante
+class Inverse: public Expression
 {
+    private:
+    Expression *_toInverse;
+
     public:
-        Inverse(float f);
+        Inverse(Expression *exp);
 
         void afficher() const;
         void afficherNpi() const;
