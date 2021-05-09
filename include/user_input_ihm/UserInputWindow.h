@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::UserInputWindow *ui;
+    bool _npiMode;
 
 private slots:
     void NumPressed();
