@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 
+/* [Equipe integration ] */
+/* Fichiers ajoutes en figure de reference mais non fonctionnels en l'etat. */
+
 Variable::~Variable(){}
 
 Variable::Variable(std::string n, float f){

@@ -29,7 +29,8 @@ SOURCES += \
     src/ValAbsolue.cpp \
     src/graph2d/graph2dwindow.cpp \
     src/user_input_ihm/UserInputWindow.cpp \
-    src/variable.cpp
+    src/variable.cpp \
+    src/LoadSave.cpp
 
 HEADERS += \
     include/Addition.h \
@@ -51,6 +52,7 @@ HEADERS += \
     include/mainwindow.h \
     include/graph2d/graph2dwindow.h \
     include/user_input_ihm/UserInputWindow.h \
+    include/LoadSave.h
 
 
 FORMS += \

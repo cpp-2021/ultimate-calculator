@@ -4,6 +4,10 @@
 #include "include/graph2d/graph2dwindow.h"
 #include "include/user_input_ihm/UserInputWindow.h"
 
+#include "include/LoadSave.h"
+
+#include "include/RootExpressionSingleton.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -20,13 +24,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionsave_triggered()
 {
-
+    save(RootExpressionSingleton::instance().get());
 }
 
 
 void MainWindow::on_actionload_triggered()
 {
-
+    Expression *loaded = load();
+    RootExpressionSingleton::instance().set(loaded);
 }
 
 void MainWindow::on_actionEnter_Expression_triggered()
