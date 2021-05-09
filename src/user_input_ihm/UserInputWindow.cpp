@@ -121,6 +121,9 @@ void UserInputWindow::EqualButton()
     QString finalRes = QString::number(res);
     chaineRentree = finalRes;
 
+    QString p("hello");
+    //QString(RootExpressionSingleton::instance().get().toString()) str;
+    ui->Expression->setText(p);
 }
 
 /**
