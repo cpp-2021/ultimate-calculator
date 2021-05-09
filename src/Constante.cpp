@@ -6,7 +6,11 @@ Constante::Constante(float f) : _valeur(f){}
 
 std::string Constante::toString() const
 {
-    return std::to_string(getValeur());
+    std::string tmp = std::to_string(getValeur());
+    tmp.erase(tmp.find_last_not_of('0') + 1, std::string::npos);
+    tmp.erase(tmp.find_last_not_of('.') + 1, std::string::npos);
+
+    return tmp;
 }
 
 std::string Constante::toStringNpi() const
