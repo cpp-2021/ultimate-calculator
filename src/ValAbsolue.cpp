@@ -10,7 +10,7 @@ std::string ValAbsolue::toString() const
 
 std::string ValAbsolue::toStringNpi() const
 {
-    return _toAbsolute->toString() + "||";
+    return _toAbsolute->toStringNpi() + "||";
 }
 
 float ValAbsolue::calculer() const

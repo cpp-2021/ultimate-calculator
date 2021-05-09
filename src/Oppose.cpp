@@ -11,7 +11,7 @@ std::string Oppose::toString() const
 
 std::string Oppose::toStringNpi() const
 {
-    return "(0 " + _toOpposite->toString() + " -)";
+    return "(0 " + _toOpposite->toStringNpi() + " -)";
 }
 
 float Oppose::calculer() const

@@ -11,7 +11,7 @@ std::string Addition::toString() const
 
 std::string Addition::toStringNpi() const
 {
-    return "(" + getGauche()->toString() + " " + getDroite()->toString() + " +)";
+    return "(" + getGauche()->toStringNpi() + " " + getDroite()->toStringNpi() + " +)";
 }
 
 float Addition::calculer() const

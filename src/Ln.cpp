@@ -11,7 +11,7 @@ std::string Ln::toString() const
 
 std::string Ln::toStringNpi() const
 {
-    return "(" + _toLn->toString() + " ln())";
+    return "(" + _toLn->toStringNpi() + " ln())";
 }
 
 float Ln::calculer() const

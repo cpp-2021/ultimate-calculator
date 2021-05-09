@@ -12,7 +12,7 @@ std::string Soustraction::toString() const
 
 std::string Soustraction::toStringNpi() const
 {
-    return "(" + getGauche()->toString() + " " + getDroite()->toStringNpi() + " -)";
+    return "(" + getGauche()->toStringNpi() + " " + getDroite()->toStringNpi() + " -)";
 }
 
 float Soustraction::calculer() const
