@@ -9,6 +9,7 @@
 #include "include/Soustraction.h"
 #include "include/Expression.h"
 #include "include/Operation.h"
+#include "include/ValAbsolue.h"
 
 #include "include/RootExpressionSingleton.h"
 
@@ -52,6 +53,8 @@ UserInputWindow::UserInputWindow(QWidget *parent)
     // Connect comma button
     connect(ui->ButtonVirgule, SIGNAL(released()), this,
             SLOT(AddVirgule()));
+
+    //TODO : connect complex operators buttons
 
 
 }
@@ -113,6 +116,9 @@ void UserInputWindow::EqualButton()
         expr = new Division(membreGauche, membreDroite);
         RootExpressionSingleton::instance().set(expr);
         break;
+
+
+
     }
 
     float res =  RootExpressionSingleton::instance().get()->calculer();
