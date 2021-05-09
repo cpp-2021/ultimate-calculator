@@ -37,5 +37,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void replaceCentralWidget(QWidget *newOne);
+    void newWindow(QWidget *newOne);
 };
 #endif // MAINWINDOW_H

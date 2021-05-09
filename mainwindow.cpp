@@ -51,7 +51,7 @@ void MainWindow::on_actionPrint_Value_Expression_triggered()
 
 void MainWindow::on_actionGraphical_2D_Print_triggered()
 {
-    replaceCentralWidget(new Graph2DWindow(this));
+    newWindow(new Graph2DWindow(nullptr));
 }
 
 void MainWindow::on_actionGraphical_3D_Print_triggered()
@@ -68,4 +68,9 @@ void MainWindow::replaceCentralWidget(QWidget *newOne){
     QWidget* curWidget = centralWidget();
     setCentralWidget(newOne);
     curWidget->deleteLater();
+}
+
+void MainWindow::newWindow(QWidget *newOne){
+    newOne->setParent(nullptr);
+    newOne->show();
 }
