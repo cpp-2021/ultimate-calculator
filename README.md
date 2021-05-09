@@ -68,15 +68,15 @@ Reste à vous placer sur la bonne branche et a ouvrir Qt Creator pour lancer le 
 
 - [x] Initialisation du projet (Fonctions de base)  
 - [x] Singleton  
-- [~] Interface Homme Machine
-- [~] Variables  
-- [~] Input utilisateur via IHM  
-- [~] Simplifications d'expressions  
-- [~] Sauvegarde et chargement  
-- [~] Graphique 2D  
-- [~] Graphique 3D  
-- [~] Extensions d'opérations  
-- [~] Expressions rentrées par l'utilisateur  
+- [x] Interface Homme Machine
+- [ ] Variables  
+- [x] Input utilisateur via IHM  
+- [x] Simplifications d'expressions  
+- [ ] Sauvegarde et chargement  
+- [x] Graphique 2D  
+- [ ] Graphique 3D  
+- [x] Extensions d'opérations  
+- [x] Expressions rentrées par l'utilisateur  
 - [ ] Documentation 
 
 Légende :  les points anotés par " ~ " ne sont pas encore intégrés et/ou sont en cours d'édition par les groupes respectifs.
