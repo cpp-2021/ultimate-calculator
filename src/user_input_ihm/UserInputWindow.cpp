@@ -66,6 +66,8 @@ UserInputWindow::UserInputWindow(QWidget *parent)
             SLOT(MathButtonPressed()));
     connect(ui->ButtonInverse, SIGNAL(released()), this,
             SLOT(MathButtonPressed()));
+    connect(ui->ButtonNpiClassic, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
 
     connect(ui->ButtonEquals, SIGNAL(released()), this,
             SLOT(EqualButton()));
@@ -167,6 +169,9 @@ void UserInputWindow::EqualButton()
         case 'p':
             expr = new Puissance(membreGauche, membreDroite);
             RootExpressionSingleton::instance().set(expr);
+            break;
+        case 'N':
+            _npiMode = !_npiMode;
             break;
 
         default:
