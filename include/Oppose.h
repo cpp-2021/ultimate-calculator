@@ -4,10 +4,13 @@
 #include "Constante.h"
 
 
-class Oppose: public Constante
+class Oppose: public Expression
 {
+    private:
+    Expression *_toOpposite;
+
     public:
-        Oppose(float f);
+        Oppose(Expression *exp);
 
         std::string toString() const;
         std::string toStringNpi() const;

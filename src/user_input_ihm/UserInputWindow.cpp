@@ -9,10 +9,15 @@
 #include "include/Soustraction.h"
 #include "include/Expression.h"
 #include "include/Operation.h"
-#include "include/ValAbsolue.h"
 
+#include "include/ValAbsolue.h"
+#include "include/Inverse.h"
 #include "include/Carre.h"
 #include "include/Puissance.h"
+#include "include/Oppose.h"
+#include "include/Ln.h"
+#include "include/RacineCarre.h"
+
 
 #include "include/RootExpressionSingleton.h"
 
@@ -49,6 +54,18 @@ UserInputWindow::UserInputWindow(QWidget *parent)
             SLOT(MathButtonPressed()));
     connect(ui->ButtonCarre, SIGNAL(released()), this,
             SLOT(MathButtonPressed()));
+    connect(ui->ButtonRacine, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
+    connect(ui->ButtonLogNeperien, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
+    connect(ui->ButtonAbsolue, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
+    connect(ui->ButtonOppose, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
+    connect(ui->ButtonPuissance, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
+    connect(ui->ButtonInverse, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
 
     connect(ui->ButtonEquals, SIGNAL(released()), this,
             SLOT(EqualButton()));
@@ -62,7 +79,6 @@ UserInputWindow::UserInputWindow(QWidget *parent)
     connect(ui->ButtonVirgule, SIGNAL(released()), this,
             SLOT(AddVirgule()));
 
-    //TODO : connect complex operators buttons
 
 
 }
@@ -108,29 +124,54 @@ void UserInputWindow::EqualButton()
     QByteArray ba = tabExpression[1].toLocal8Bit();
     const char* op = ba.data();
     switch (op[0]){
-      case '+':
-        expr = new Addition(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(expr);
-        break;
-      case '-':
-        expr = new Soustraction(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(expr);
-        break;
-      case '*':
-        expr = new Multiplication(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(expr);
-        break;
-      case '/':
-        expr = new Division(membreGauche, membreDroite);
-        RootExpressionSingleton::instance().set(expr);
-        break;
-      case 'x':
-          expr = new Carre(membreGauche);
-          RootExpressionSingleton::instance().set(expr);
-          break;
-      default:
-        cout << "Non gere : " << op[0] << endl;
-        break;
+        case '+':
+            expr = new Addition(membreGauche, membreDroite);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case '-':
+            expr = new Soustraction(membreGauche, membreDroite);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case '*':
+            expr = new Multiplication(membreGauche, membreDroite);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case '/':
+            expr = new Division(membreGauche, membreDroite);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case 'x':
+            expr = new Carre(membreGauche);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case 'l':
+            expr = new Inverse(membreGauche);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case '(':
+            expr = new Oppose(membreGauche);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case '|':
+            expr = new ValAbsolue(membreGauche);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case 'L':
+            expr = new Ln(membreGauche);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case 'v':
+            expr = new RacineCarre(membreGauche);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+        case 'p':
+            expr = new Puissance(membreGauche, membreDroite);
+            RootExpressionSingleton::instance().set(expr);
+            break;
+
+        default:
+            cout << "Non gere : " << op[0] << endl;
+            break;
     }
 
     float res =  RootExpressionSingleton::instance().get()->calculer();

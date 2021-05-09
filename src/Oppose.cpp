@@ -2,19 +2,19 @@
 
 #include <iostream>
 
-Oppose::Oppose(float f) : Constante(f){}
+Oppose::Oppose(Expression *exp) : _toOpposite(exp){}
 
 std::string Oppose::toString() const
 {
-    return "(-" + std::to_string(getValeur()) + ")";
+    return "(-" + _toOpposite->toString() + ")";
 }
 
 std::string Oppose::toStringNpi() const
 {
-    return "(0 " + std::to_string(getValeur()) + " -)";
+    return "(0 " + _toOpposite->toString() + " -)";
 }
 
 float Oppose::calculer() const
 {
-    return  0 - getValeur();
+    return  0 - _toOpposite->calculer();
 }

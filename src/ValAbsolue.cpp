@@ -1,20 +1,20 @@
 #include "include/ValAbsolue.h"
 
 #include <iostream>
-ValAbsolue::ValAbsolue(float f) : Constante(f){}
+ValAbsolue::ValAbsolue(Expression *exp) : _toAbsolute(exp){}
 
 std::string ValAbsolue::toString() const
 {
-    return "|" + std::to_string(getValeur()) + "|";
+    return "|" + _toAbsolute->toString() + "|";
 }
 
 std::string ValAbsolue::toStringNpi() const
 {
-    return std::to_string(getValeur()) + "||";
+    return _toAbsolute->toString() + "||";
 }
 
 float ValAbsolue::calculer() const
 {
-    return  abs(getValeur());
+    return  abs(_toAbsolute->calculer());
 }
 
