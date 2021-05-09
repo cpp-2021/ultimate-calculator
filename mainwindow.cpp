@@ -9,6 +9,7 @@
 #include "include/LoadSave.h"
 
 #include "include/RootExpressionSingleton.h"
+#include "include/Constante.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -71,8 +72,11 @@ void MainWindow::on_actionSimplify_Expression_triggered()
    RootExpressionSingleton singleton = RootExpressionSingleton::instance();
    Expression * r = singleton.get();
    if(r != nullptr){
-     singleton.set(r->simplifier());
-     r->afficher(); std::cout << std::endl;
+     RootExpressionSingleton::instance().set(r->simplifier());
+      RootExpressionSingleton::instance().get()->afficher(); std::cout << std::endl;
+     //Affect expression in the central widget
+     UserInputWindow* curWidget = (UserInputWindow*) centralWidget();
+     curWidget->refreshExprDisplay();
    }
 }
 

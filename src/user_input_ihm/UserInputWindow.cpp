@@ -140,6 +140,17 @@ void UserInputWindow::EqualButton()
     }else{
         membreGauche = new Constante(tabExpression[0].toFloat());
     }
+    //Verification membre gauche unique constant
+    if(tabExpression[0] == "" || tabExpression[1] == ""){
+        //Constante seule
+        cout << chaineRentree.toStdString();
+        RootExpressionSingleton::instance().set(new Constante(chaineRentree.toFloat()));
+        QString txt = QString::number(RootExpressionSingleton::instance().get()->calculer());
+        ui->Display->setText(txt);
+        chaineRentree = txt;
+        refreshExprDisplay();
+        return;
+    }
 
     Expression *membreDroite = new Constante(tabExpression[2].toFloat());
 
@@ -223,7 +234,8 @@ void UserInputWindow::NpiSwitchButton(){
 }
 
 void UserInputWindow::refreshExprDisplay(){
-    if(chaineRentree == "")
+    RootExpressionSingleton singleton = RootExpressionSingleton::instance();
+    if(singleton.get() == nullptr)
         return;
 
     std::string tmp = "";

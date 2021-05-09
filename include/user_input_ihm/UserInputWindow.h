@@ -15,11 +15,11 @@ public:
     UserInputWindow(QWidget *parent = nullptr);
     ~UserInputWindow();
 
+     void refreshExprDisplay();
+
 private:
     Ui::UserInputWindow *ui;
     bool _npiMode;
-
-    void refreshExprDisplay();
 
 private slots:
     void NumPressed();
