@@ -5,11 +5,11 @@
 
 class Constante : public Expression
 {
-    private:
+    protected:
         float _valeur;
     public:
-        // La valeur par défaut de f permet a ce constructeur de faire office
-        // de constructeur par défaut.
+        // La valeur par defaut de f permet a ce constructeur de faire office
+        // de constructeur par defaut.
         Constante(float f = 0.0f);
 
         float getValeur() const { return _valeur; }

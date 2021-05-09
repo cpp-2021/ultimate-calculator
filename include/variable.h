@@ -11,10 +11,14 @@ private:
 public:
     Variable();
 
-    Variable(std::string n = "x") { _nom = n; }
-    Variable(float f = 0.0f) : Constante(f) {}
+    Variable(std::string n, float f = 0.0f);
 
-    std::string getValeur() const { return _nom; }
+    std::string toString() const;
+    std::string toStringNpi() const;
+
+    //Workaround
+    void afficher() const override;
+    void afficherNpi() const override;
 
     virtual ~Variable();
 };

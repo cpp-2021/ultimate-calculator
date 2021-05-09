@@ -29,33 +29,15 @@ int main(int argc, char *argv[])
     
     Constante c1(5.0f);
     Constante c2(3.0f);
-    cout << "Constantes : ";
-    c1.afficher();
-    cout << ", ";
-    c2.afficher();
-    cout << endl;
 
-    Addition add1(&c1, &c2);
-    Constante resultat(add1.calculer());
-    add1.afficher();
+    //Création d'une expression avec variable
+    cout << "Multiplication avec variable" << endl;
+    Variable v("x",3.0f);
+    Multiplication m(&c1, &v);
+    m.afficher();
     cout << " = ";
-    resultat.afficher();
-    cout << endl;
-
-    Division div1(&c1, &c2);
-    Constante resultat4(div1.calculer());
-    //Division *resultat4(div1.simplifier());
-    div1.afficher();
-    cout << " = ";
-    resultat4.afficher();
-    cout << endl;
-
-    Multiplication expr(&add1, &div1);
-    //Constante res(expr.calculer());
-    Multiplication *res(expr.simplifier());
-    expr.afficher();
-    cout << " = ";
-    res->afficher();
+    Constante result(m.calculer());
+    result.afficher();
     cout << endl;
 
     return a.exec();

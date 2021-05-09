@@ -33,12 +33,12 @@ Division* Division::simplifier() {
         return new Division(getGauche(), getDroite());
     }
     if(a == 0){
-         return new Division(getGauche(), new Variable(b));
+         return new Division(getGauche(), new Constante(b));
 
     }
     if(b == 0){
-        return new Division(new Variable(a), getDroite());
+        return new Division(new Constante(a), getDroite());
     }
 
-    return new Division(new Variable(a), new Variable(b));
+    return new Division(new Constante(a), new Constante(b));
 }

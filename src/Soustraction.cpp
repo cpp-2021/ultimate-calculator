@@ -32,5 +32,5 @@ Soustraction* Soustraction::simplifier() {
     float a = getGauche()->calculer();
     float b = getDroite()->calculer();
 
-    return new Soustraction(new Variable(a), new Variable(b));
+    return new Soustraction(new Constante(a), new Constante(b));
 }

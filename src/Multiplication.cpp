@@ -29,5 +29,5 @@ Multiplication* Multiplication::simplifier() {
     float a = getGauche()->calculer();
     float b = getDroite()->calculer();
 
-    return new Multiplication(new Variable(a), new Variable(b));
+    return new Multiplication(new Constante(a), new Constante(b));
 }

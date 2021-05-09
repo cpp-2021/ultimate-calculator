@@ -34,5 +34,5 @@ Addition* Addition::simplifier() {
     float a = getGauche()->calculer();
     float b = getDroite()->calculer();
 
-    return new Addition(new Variable(a), new Variable(b));
+    return new Addition(new Constante(a), new Constante(b));
 }
