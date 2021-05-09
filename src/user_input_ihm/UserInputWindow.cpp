@@ -11,6 +11,9 @@
 #include "include/Operation.h"
 #include "include/ValAbsolue.h"
 
+#include "include/Carre.h"
+#include "include/Puissance.h"
+
 #include "include/RootExpressionSingleton.h"
 
 using namespace std;
@@ -44,8 +47,12 @@ UserInputWindow::UserInputWindow(QWidget *parent)
             SLOT(MathButtonPressed()));
     connect(ui->ButtonMult, SIGNAL(released()), this,
             SLOT(MathButtonPressed()));
+    connect(ui->ButtonCarre, SIGNAL(released()), this,
+            SLOT(MathButtonPressed()));
+
     connect(ui->ButtonEquals, SIGNAL(released()), this,
             SLOT(EqualButton()));
+
 
     // Connect clear button
     connect(ui->ButtonAC, SIGNAL(released()), this,
@@ -116,6 +123,13 @@ void UserInputWindow::EqualButton()
       case '/':
         expr = new Division(membreGauche, membreDroite);
         RootExpressionSingleton::instance().set(expr);
+        break;
+      case 'x':
+          expr = new Carre(membreGauche);
+          RootExpressionSingleton::instance().set(expr);
+          break;
+      default:
+        cout << "Non gere : " << op[0] << endl;
         break;
     }
 

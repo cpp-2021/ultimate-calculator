@@ -1,19 +1,19 @@
 #include "include/RacineCarre.h"
 
 #include <iostream>
-RacineCarre::RacineCarre(float f) : Constante(f){}
+RacineCarre::RacineCarre(Expression *exp) : _toSquareRoot(exp){}
 
 std::string RacineCarre::toString() const
 {
-    return "√(" + std::to_string(getValeur()) + ")";
+    return "√(" + _toSquareRoot->toString() + ")";
 }
 
 std::string RacineCarre::toStringNpi() const
 {
-    return "(" + std::to_string(getValeur()) + ")√";
+    return "√(" + _toSquareRoot->toStringNpi() + ")";
 }
 
 float RacineCarre::calculer() const
 {
-    return  sqrt(getValeur());
+    return  sqrt(_toSquareRoot->calculer());
 }

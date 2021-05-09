@@ -5,10 +5,13 @@
 #include "Constante.h"
 
 
-class RacineCarre: public Constante
+class RacineCarre: public Expression
 {
+    private:
+    Expression *_toSquareRoot;
+
     public:
-        RacineCarre(float f);
+        RacineCarre(Expression *exp);
 
         std::string toString() const;
         std::string toStringNpi() const;

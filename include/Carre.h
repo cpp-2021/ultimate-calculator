@@ -5,10 +5,13 @@
 #include "Constante.h"
 
 
-class Carre: public Constante
+class Carre: public Expression
 {
+    private:
+    Expression *_toSquare;
+
     public:
-        Carre(float f);
+        Carre(Expression * exp);
 
         std::string toString() const;
         std::string toStringNpi() const;

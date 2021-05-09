@@ -1,19 +1,20 @@
 #include "include/Carre.h"
 
 #include <iostream>
-Carre::Carre(float f) : Constante(f){}
+Carre::Carre(Expression * exp) : _toSquare(exp){}
 
 std::string Carre::toString() const
 {
-    return std::to_string(getValeur()) + "²";
+    return _toSquare->toString() + "²";
 }
 
 std::string Carre::toStringNpi() const
 {
-    return toString();
+    return _toSquare->toStringNpi() + "²";
 }
 
 float Carre::calculer() const
 {
-    return  getValeur() * getValeur();
+    float temp = _toSquare->calculer();
+    return temp*temp;
 }
