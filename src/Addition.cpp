@@ -1,6 +1,8 @@
 #include <iostream>
-
+#include <ctype.h>
 #include "include/Addition.h"
+#include "include/variable.h"
+
 
 Addition::Addition(Expression *gauche, Expression *droite) : Operation(gauche, droite){}
 
@@ -25,4 +27,12 @@ void Addition::afficherNpi() const
 float Addition::calculer() const
 {
     return getGauche()->calculer() + getDroite()->calculer();
+}
+
+
+Addition* Addition::simplifier() {
+    float a = getGauche()->calculer();
+    float b = getDroite()->calculer();
+
+    return new Addition(new Variable(a), new Variable(b));
 }

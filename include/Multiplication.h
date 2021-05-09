@@ -11,6 +11,7 @@ class Multiplication: public Operation
         void afficher() const;
         void afficherNpi() const;
         float calculer() const;
+        Multiplication* simplifier();
 };
 
 #endif // MULTIPLICATION_H
